@@ -7,12 +7,25 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    [Parse setApplicationId:@"HvfydIIRoTKeYthy7jAhOGRE9F56OtA37Yke9liM"
+                  clientKey:@"NZmaBjBKqhE1hMGQ9AwO6gr0b4DviMzlEVxGYeEU"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    //enabling anonymous user
+    [PFUser enableAutomaticUser];
+    [[PFUser currentUser] incrementKey:@"RunCount"];
+    [[PFUser currentUser] saveInBackground];
+    
+    
+    
     return YES;
 }
 							
