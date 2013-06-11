@@ -90,7 +90,6 @@
         [collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
         // Select Cell
     }
-//    [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
     
     NoteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -102,11 +101,6 @@
         [[cell noteText] setBackgroundColor:[UIColor clearColor]];
         [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
         cell.backgroundColor = note.color;
-        
-//        if (!note.linkedAbove) {
-//            [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UnlinkedHeader" forIndexPath:indexPath];
-//            //disable header
-//        }
     }
     
     
@@ -149,19 +143,6 @@
     return YES;
 }
 
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//{
-//    UICollectionReusableView *reusableview = nil;
-//    if ([_allNotes objectAtIndex:indexPath.section]) {
-//        
-//        Note *note = [_allNotes objectAtIndex:indexPath.section];
-//        if (kind == UICollectionElementKindSectionHeader && note.linkedAbove!=true) {
-//            reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UnlinkedHeader" forIndexPath:indexPath];
-//        }
-//    }
-//    
-//    return reusableview;
-//}
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
     Note *note = [_allNotes objectAtIndex:section];
