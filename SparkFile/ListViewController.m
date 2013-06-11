@@ -133,7 +133,6 @@
     
     return YES;
 }
--(void)col
 
 //sets header for linked cells to zero
 //-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
