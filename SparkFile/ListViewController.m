@@ -34,42 +34,36 @@
     
     Note *note = [[Note alloc] init];
     note.linkedAbove = false;
-    note.linkedBelow = false;
     note.text = @"this is my first note";
     note.color = [UIColor emerlandColor];
     [_allNotes addObject:note];
     
     Note *note2 = [[Note alloc] init];
     note2.linkedAbove = false;
-    note2.linkedBelow = false;
     note2.text = @"this is my second note";
     note2.color = [UIColor greenSeaColor];
     [_allNotes addObject:note2];
     
     Note *note3 = [[Note alloc] init];
     note3.linkedAbove = false;
-    note3.linkedBelow = false;
     note3.text = @"this is my third note";
     note3.color = [UIColor pumpkinColor];
     [_allNotes addObject:note3];
     
     Note *note4 = [[Note alloc] init];
     note4.linkedAbove = false;
-    note4.linkedBelow = true;
     note4.text = @"this is my fourth note";
     note4.color = [UIColor midnightBlueColor];
     [_allNotes addObject:note4];
     
     Note *note5 = [[Note alloc] init];
     note5.linkedAbove = true;
-    note5.linkedBelow = false;
     note5.text = @"this is my fifth note";
     note5.color = [UIColor nephritisColor];
     [_allNotes addObject:note5];
     
     Note *note6 = [[Note alloc] init];
     note6.linkedAbove = false;
-    note6.linkedBelow = false;
     note6.text = @"this is my sixth note";
     note6.color = [UIColor sunflowerColor];
     [_allNotes addObject:note6];
@@ -93,9 +87,9 @@
     
     NoteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    if ([_allNotes objectAtIndex:indexPath.section]) {
+    if ([_allNotes objectAtIndex:indexPath.item]) {
         
-        Note *note = [_allNotes objectAtIndex:indexPath.section];
+        Note *note = [_allNotes objectAtIndex:indexPath.item];
         
         [[cell noteText] setText:note.text];
         [[cell noteText] setBackgroundColor:[UIColor clearColor]];
@@ -110,18 +104,15 @@
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    
-    
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if (_allNotes != NULL) {
         return _allNotes.count;
     }
     else return 0;  //TODO check this later
-    
 
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
 }
 
 #pragma mark - LXReorderableCollectionViewDataSource methods
@@ -142,18 +133,19 @@
     
     return YES;
 }
+-(void)col
 
-
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    Note *note = [_allNotes objectAtIndex:section];
-    
-    if(note != Nil) {
-        if (note.linkedAbove) {
-            return CGSizeMake(50, 0);
-        }
-    }
-    return CGSizeMake(50, 50);
-}
+//sets header for linked cells to zero
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+//    Note *note = [_allNotes objectAtIndex:section];
+//    
+//    if(note != Nil) {
+//        if (note.linkedAbove) {
+//            return CGSizeMake(50, -50); //set this to be smaller?
+//        }
+//    }
+//    return CGSizeMake(50, 50);
+//}
 
 #pragma mark - LXReorderableCollectionViewDelegateFlowLayout methods
 
@@ -173,9 +165,10 @@
     NSLog(@"did end drag");
 }
 
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected cell at @%d",indexPath.item);
+    NSLog(@"selected cell at @%d",indexPath.section);
     [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];      //really want to open modal view with cell and keyboard
     [self.ListView deselectItemAtIndexPath:indexPath animated:YES];
 }
