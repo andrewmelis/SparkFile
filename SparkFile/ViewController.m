@@ -8,12 +8,15 @@
 
 #import "ViewController.h"
 #import <Parse/Parse.h>
+#import "FlatUIKit.h"
 
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
+
+@synthesize myButton = _myButton;
 
 - (void)viewDidLoad
 {
@@ -25,6 +28,14 @@
     [testObject setObject:@"bar2" forKey:@"foo"];
     testObject.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
     [testObject saveInBackground];
+    
+    _myButton.buttonColor = [UIColor turquoiseColor];
+    _myButton.shadowColor = [UIColor greenSeaColor];
+    _myButton.shadowHeight = 3.0f;
+    _myButton.cornerRadius = 6.0f;
+    _myButton.titleLabel.font = [UIFont boldFlatFontOfSize:16];
+    [_myButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateNormal];
+    [_myButton setTitleColor:[UIColor cloudsColor] forState:UIControlStateHighlighted];
     
 }
 

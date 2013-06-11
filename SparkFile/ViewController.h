@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FUIButton.h"
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet FUIButton *myButton;
+
 
 @end
