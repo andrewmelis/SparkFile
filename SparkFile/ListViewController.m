@@ -55,13 +55,13 @@
     
     Note *note4 = [[Note alloc] init];
     note4.linkedAbove = false;
-    note4.linkedBelow = false;
+    note4.linkedBelow = true;
     note4.text = @"this is my fourth note";
     note4.color = [UIColor midnightBlueColor];
     [_allNotes addObject:note4];
     
     Note *note5 = [[Note alloc] init];
-    note5.linkedAbove = false;
+    note5.linkedAbove = true;
     note5.linkedBelow = false;
     note5.text = @"this is my fifth note";
     note5.color = [UIColor nephritisColor];
@@ -94,18 +94,19 @@
     
     NoteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    if ([_allNotes objectAtIndex:indexPath.item]) {
+    if ([_allNotes objectAtIndex:indexPath.section]) {
         
-        Note *note = [_allNotes objectAtIndex:indexPath.item];
+        Note *note = [_allNotes objectAtIndex:indexPath.section];
         
         [[cell noteText] setText:note.text];
         [[cell noteText] setBackgroundColor:[UIColor clearColor]];
         [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
         cell.backgroundColor = note.color;
         
-        if (note.linkedAbove) {
-            cell.
-        }
+//        if (!note.linkedAbove) {
+//            [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"UnlinkedHeader" forIndexPath:indexPath];
+//            //disable header
+//        }
     }
     
     
@@ -116,15 +117,17 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     if (_allNotes != NULL) {
         return _allNotes.count;
     }
     else return 0;  //TODO check this later
+    
+
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 1;
 }
 
 #pragma mark - LXReorderableCollectionViewDataSource methods
@@ -144,6 +147,31 @@
 - (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath {
     
     return YES;
+}
+
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//{
+//    UICollectionReusableView *reusableview = nil;
+//    if ([_allNotes objectAtIndex:indexPath.section]) {
+//        
+//        Note *note = [_allNotes objectAtIndex:indexPath.section];
+//        if (kind == UICollectionElementKindSectionHeader && note.linkedAbove!=true) {
+//            reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"UnlinkedHeader" forIndexPath:indexPath];
+//        }
+//    }
+//    
+//    return reusableview;
+//}
+
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    Note *note = [_allNotes objectAtIndex:section];
+    
+    if(note != Nil) {
+        if (note.linkedAbove) {
+            return CGSizeMake(50, 0);
+        }
+    }
+    return CGSizeMake(50, 50);
 }
 
 #pragma mark - LXReorderableCollectionViewDelegateFlowLayout methods
@@ -167,7 +195,7 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected cell at @%d",indexPath.item);
-    [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
+    [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];      //really want to open modal view with cell and keyboard
     [self.ListView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
