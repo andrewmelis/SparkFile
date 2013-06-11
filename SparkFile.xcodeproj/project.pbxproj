@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2805A6911766C80B000A9716 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805A6901766C80B000A9716 /* Note.m */; };
 		2805A6951766CD76000A9716 /* NoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2805A6941766CD76000A9716 /* NoteCell.m */; };
+		2818E56F17676CC1001B5121 /* LinkedNotesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2818E56E17676CC1001B5121 /* LinkedNotesCell.m */; };
 		2840AF5F1765A59E00203874 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF5E1765A59E00203874 /* UIKit.framework */; };
 		2840AF611765A59E00203874 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF601765A59E00203874 /* Foundation.framework */; };
 		2840AF631765A59E00203874 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF621765A59E00203874 /* CoreGraphics.framework */; };
@@ -65,6 +66,8 @@
 		2805A6901766C80B000A9716 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		2805A6931766CD76000A9716 /* NoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteCell.h; sourceTree = "<group>"; };
 		2805A6941766CD76000A9716 /* NoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteCell.m; sourceTree = "<group>"; };
+		2818E56D17676CC1001B5121 /* LinkedNotesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedNotesCell.h; sourceTree = "<group>"; };
+		2818E56E17676CC1001B5121 /* LinkedNotesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkedNotesCell.m; sourceTree = "<group>"; };
 		2840AF5B1765A59E00203874 /* SparkFile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SparkFile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2840AF5E1765A59E00203874 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2840AF601765A59E00203874 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -178,6 +181,8 @@
 			children = (
 				2805A6931766CD76000A9716 /* NoteCell.h */,
 				2805A6941766CD76000A9716 /* NoteCell.m */,
+				2818E56D17676CC1001B5121 /* LinkedNotesCell.h */,
+				2818E56E17676CC1001B5121 /* LinkedNotesCell.m */,
 			);
 			name = "Collection View Element Classes";
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 				2847234C176629D800157935 /* ListViewController.m in Sources */,
 				2805A6911766C80B000A9716 /* Note.m in Sources */,
 				2805A6951766CD76000A9716 /* NoteCell.m in Sources */,
+				2818E56F17676CC1001B5121 /* LinkedNotesCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

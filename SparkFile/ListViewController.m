@@ -34,36 +34,42 @@
     
     Note *note = [[Note alloc] init];
     note.linkedAbove = false;
+    note.linkedBelow = false;
     note.text = @"this is my first note";
     note.color = [UIColor emerlandColor];
     [_allNotes addObject:note];
     
     Note *note2 = [[Note alloc] init];
     note2.linkedAbove = false;
+    note2.linkedBelow = false;
     note2.text = @"this is my second note";
     note2.color = [UIColor greenSeaColor];
     [_allNotes addObject:note2];
     
     Note *note3 = [[Note alloc] init];
     note3.linkedAbove = false;
+    note3.linkedBelow = false;
     note3.text = @"this is my third note";
     note3.color = [UIColor pumpkinColor];
     [_allNotes addObject:note3];
     
     Note *note4 = [[Note alloc] init];
     note4.linkedAbove = false;
+    note4.linkedBelow = true;
     note4.text = @"this is my fourth note";
     note4.color = [UIColor midnightBlueColor];
     [_allNotes addObject:note4];
     
     Note *note5 = [[Note alloc] init];
     note5.linkedAbove = true;
+    note5.linkedBelow = false;
     note5.text = @"this is my fifth note";
     note5.color = [UIColor nephritisColor];
     [_allNotes addObject:note5];
     
     Note *note6 = [[Note alloc] init];
     note6.linkedAbove = false;
+    note6.linkedBelow = false;
     note6.text = @"this is my sixth note";
     note6.color = [UIColor sunflowerColor];
     [_allNotes addObject:note6];
@@ -79,22 +85,45 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"NoteCell";
-    if ([collectionView.indexPathsForSelectedItems containsObject:indexPath]) {
-        [collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
-        // Select Cell
-    }
+    static NSString *CellIdentifier_solo    = @"NoteCell";
+    static NSString *CellIdentifier_set     = @"LinkedNoteCell";
+    static NSString *CellIdentifier_linked  = @"InternalLinkedNoteCell";
     
-    NoteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+//    if ([collectionView.indexPathsForSelectedItems containsObject:indexPath]) {
+//        [collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
+//        // Select Cell
+//    }
+    NoteCell *cell;
+//    NoteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_solo forIndexPath:indexPath];
     
-    if ([_allNotes objectAtIndex:indexPath.item]) {
+    if ([_allNotes objectAtIndex:indexPath.item]) {         //if there's an object at index
         
-        Note *note = [_allNotes objectAtIndex:indexPath.item];
+        Note *note = [_allNotes objectAtIndex:indexPath.item];      //get that note
         
-        [[cell noteText] setText:note.text];
-        [[cell noteText] setBackgroundColor:[UIColor clearColor]];
-        [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
-        cell.backgroundColor = note.color;
+//        if(!note.linkedBelow) {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_solo forIndexPath:indexPath];
+            NSLog(@"unlinked cell dequeued");
+            
+            //cell formatting -- good stuff
+            [[cell noteText] setText:note.text];
+            [[cell noteText] setBackgroundColor:[UIColor clearColor]];
+            [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
+            cell.backgroundColor = note.color;
+            
+//        }
+//        else if (note.linkedBelow) {
+//            cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_set forIndexPath:indexPath];
+//            NSLog(@"linked set dequeued");      //dequeuing collectionview, how get collectionview cell?
+//            
+//            //get
+//        }
+        
+        
+//        //cell formatting -- good stuff
+//        [[cell noteText] setText:note.text];
+//        [[cell noteText] setBackgroundColor:[UIColor clearColor]];
+//        [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
+//        cell.backgroundColor = note.color;
     }
     
     
@@ -167,7 +196,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected cell at @%d",indexPath.section);
+    NSLog(@"selected cell at @%d",indexPath.item);
     [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];      //really want to open modal view with cell and keyboard
     [self.ListView deselectItemAtIndexPath:indexPath animated:YES];
 }

@@ -13,6 +13,7 @@
 @synthesize text;
 @synthesize slot;
 @synthesize linkedAbove;
+@synthesize linkedBelow;
 @synthesize color;
 @synthesize dateAdded;
 @synthesize dateModified;
