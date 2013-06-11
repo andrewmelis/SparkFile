@@ -12,5 +12,6 @@
 @interface ListViewController : UICollectionViewController <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic) NSMutableArray *allNotes;
+@property (strong, nonatomic) IBOutlet UICollectionView *ListView;
 
 @end

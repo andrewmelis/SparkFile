@@ -22,9 +22,16 @@
 
 - (void)viewDidLoad
 {
-    _allNotes = [[NSMutableArray alloc] init];
+    
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    self.ListView.delegate = self;
+    self.ListView.dataSource = self;
+    
+    _allNotes = [[NSMutableArray alloc] init];
+    
     Note *note = [[Note alloc] init];
     note.linkedAbove = false;
     note.linkedBelow = false;
@@ -45,15 +52,45 @@
     note3.text = @"this is my third note";
     note3.color = [UIColor pumpkinColor];
     [_allNotes addObject:note3];
+    
+    Note *note4 = [[Note alloc] init];
+    note4.linkedAbove = false;
+    note4.linkedBelow = false;
+    note4.text = @"this is my fourth note";
+    note4.color = [UIColor midnightBlueColor];
+    [_allNotes addObject:note4];
+    
+    Note *note5 = [[Note alloc] init];
+    note5.linkedAbove = false;
+    note5.linkedBelow = false;
+    note5.text = @"this is my fifth note";
+    note5.color = [UIColor nephritisColor];
+    [_allNotes addObject:note5];
+    
+    Note *note6 = [[Note alloc] init];
+    note6.linkedAbove = false;
+    note6.linkedBelow = false;
+    note6.text = @"this is my sixth note";
+    note6.color = [UIColor sunflowerColor];
+    [_allNotes addObject:note6];
+    
     NSLog(@"stop");
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self scrollToBottom];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"NoteCell";
-    
-    
+    if ([collectionView.indexPathsForSelectedItems containsObject:indexPath]) {
+        [collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
+        // Select Cell
+    }
+//    [collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
     
     NoteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
@@ -62,12 +99,17 @@
         Note *note = [_allNotes objectAtIndex:indexPath.item];
         
         [[cell noteText] setText:note.text];
-        [[cell noteText] setBackgroundColor:note.color];
+        [[cell noteText] setBackgroundColor:[UIColor clearColor]];
+        [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
         cell.backgroundColor = note.color;
+        
+        if (note.linkedAbove) {
+            cell.
+        }
     }
     
     
-    cell.layer.cornerRadius=10;         //make it pretty
+    cell.layer.cornerRadius=5;         //make it pretty
     return cell;
     
 }
@@ -122,10 +164,20 @@
     NSLog(@"did end drag");
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected cell at @%d",indexPath.item);
+    [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
+    [self.ListView deselectItemAtIndexPath:indexPath animated:YES];
+}
 
-
-
-
+//Scrolls to bottom of scroller
+//http://stackoverflow.com/questions/14760496/uicollectionview-automatically-scroll-to-bottom-when-screen-loads
+-(void)scrollToBottom
+{
+    CGPoint bottomOffset = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height);
+    [self.ListView setContentOffset:bottomOffset animated:NO];
+}
 
 - (void)didReceiveMemoryWarning
 {
