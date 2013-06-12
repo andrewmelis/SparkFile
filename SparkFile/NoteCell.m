@@ -38,15 +38,16 @@
         NSLog(@"test archive tag + %d",self.note.archived);
         
         [self moveSelfToArchive];
-        
-        
-        
     
     }
         else if (touch.view.tag == 30)
     {
         //open edit modal
         NSLog(@"testing tags -- edit button");
+        
+        //flip booleans
+        self.noteText.userInteractionEnabled = !self.noteText.userInteractionEnabled;
+        self.noteText.editable = !self.noteText.editable;
     }
 
 }
