@@ -31,12 +31,13 @@
         
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        //enabling anonymous user
-        [PFUser enableAutomaticUser];
-        [[PFUser currentUser] incrementKey:@"RunCount"];
-        [[PFUser currentUser] saveInBackground];
+
     }
     
+    //enabling anonymous user
+    [PFUser enableAutomaticUser];
+    [[PFUser currentUser] incrementKey:@"RunCount"];
+    [[PFUser currentUser] saveInBackground];
 
     
     

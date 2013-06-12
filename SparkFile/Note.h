@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FlatUIKit.h"
+#import <Parse/Parse.h>
 
 @interface Note : NSObject
 
@@ -18,5 +19,7 @@
 
 - (NSComparisonResult)colorCompare:(Note *)otherObject;
 - (NSComparisonResult)indexCompare:(Note *)otherObject;
+
+-(void)saveNoteToParse:(Note*)offNote;
 
 @end

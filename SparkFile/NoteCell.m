@@ -11,6 +11,7 @@
 #import "NSString+FontAwesome.h"
 
 
+
 @implementation NoteCell
 
 - (id)initWithFrame:(CGRect)frame
@@ -64,6 +65,8 @@
 //    [self.parentViewController archiveNote:self.note];
     
 }
+
+
 
 -(void)showColorPicker
 {

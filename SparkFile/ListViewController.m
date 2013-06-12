@@ -81,6 +81,19 @@
 //    [self scrollToBottom];
 }
 
+
+//PARSE METHODS
+-(void)saveAllNotesToParse
+{
+    
+}
+//{
+//    for (Note* note in _allNotes) {
+//        NSLog(@"%@",note.text);
+//        [note saveNoteToParse:note];
+//    }
+//}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier_solo    = @"NoteCell";
@@ -219,8 +232,6 @@
 
 //sorts all the notes by slot index
 -(void)indexSortAllNotes {
-
-    
     NSArray *sortedNotes;
     sortedNotes = [_allNotes sortedArrayUsingSelector:@selector(indexCompare:)];
     _allNotes = sortedNotes.mutableCopy;
@@ -233,7 +244,10 @@
         Note *note = [_allNotes objectAtIndex:i];
         note.slot = i;
         [_allNotes replaceObjectAtIndex:i withObject:note];
+        [note saveNoteToParse:note];
     }
+//    [PFObject saveAll:_allNotes];
+//     saveAllNotesToParse];
 }
 
 //updates allnotes to only include archived notes
