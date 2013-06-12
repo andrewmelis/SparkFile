@@ -238,19 +238,21 @@
             [archivedNotes addObject:note];
         }
     }
-    _allNotes = archivedNotes;
+    _allNotes = [archivedNotes mutableCopy];
     [self.ListView reloadData];
     
 }
 
 -(void)getAllNonArchived {
     //get all notes from web
+    NSMutableArray *nonArchivedNotes = [[NSMutableArray alloc] init];
     for (int i = 0; i<_allNotes.count; i++) {
         Note *note = [_allNotes objectAtIndex:i];
-        if(note.archived) {
-            [_allNotes removeObject:note];
+        if(!note.archived) {
+            [nonArchivedNotes addObject:note];
         }
     }
+    _allNotes = [nonArchivedNotes mutableCopy];
     [self.ListView reloadData];
 }
 
