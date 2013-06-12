@@ -42,7 +42,7 @@
     Note *note = [[Note alloc] init];
     note.text = @"this is my first note";
     note.color = [UIColor emerlandColor];
-    note.slot = 0;
+    note.slot = 5;
     NSUUID *uuid = [NSUUID UUID];
     NSLog(@"UUID: %@", [uuid UUIDString]);
     note.uuid = [uuid UUIDString];
@@ -50,8 +50,8 @@
     
     Note *note2 = [[Note alloc] init];
     note2.text = @"this is my second note";
-    note2.color = [UIColor alizarinColor];
-    note2.slot = 1;
+    note2.color = [UIColor sunflowerColor];
+    note2.slot = 4;
     NSUUID *uuid2 = [NSUUID UUID];
     NSLog(@"UUID: %@", [uuid2 UUIDString]);
     note2.uuid = [uuid2 UUIDString];
@@ -60,7 +60,7 @@
     Note *note3 = [[Note alloc] init];
     note3.text = @"this is my third note";
     note3.color = [UIColor amethystColor];
-    note3.slot = 2;
+    note3.slot = 3;
     NSUUID *uuid3 = [NSUUID UUID];
     NSLog(@"UUID: %@", [uuid3 UUIDString]);
     note3.uuid = [uuid3 UUIDString];
@@ -69,7 +69,7 @@
     Note *note4 = [[Note alloc] init];
     note4.text = @"this is my fourth note";
     note4.color = [UIColor midnightBlueColor];
-    note4.slot = 3;
+    note4.slot = 2;
     NSUUID *uuid4 = [NSUUID UUID];
     NSLog(@"UUID: %@", [uuid4 UUIDString]);
     note4.uuid = [uuid4 UUIDString];
@@ -78,7 +78,7 @@
     Note *note5 = [[Note alloc] init];
     note5.text = @"this is my fifth note";
     note5.color = [UIColor alizarinColor];
-    note5.slot = 4;
+    note5.slot = 1;
     NSUUID *uuid5 = [NSUUID UUID];
     NSLog(@"UUID: %@", [uuid5 UUIDString]);
     note5.uuid = [uuid5 UUIDString];
@@ -86,8 +86,8 @@
     
     Note *note6 = [[Note alloc] init];
     note6.text = @"this is my sixth note";
-    note6.color = [UIColor sunflowerColor];
-    note6.slot = 5;
+    note6.color = [UIColor emerlandColor];
+    note6.slot = 0;
     NSUUID *uuid6 = [NSUUID UUID];
     NSLog(@"UUID: %@", [uuid6 UUIDString]);
     note6.uuid = [uuid6 UUIDString];
@@ -95,6 +95,7 @@
     
     NSLog(@"temp data entered");
     [self indexSortAllNotes];
+    _masterNotes = _allNotes;
     
 }
 
@@ -244,8 +245,6 @@
 
 //sorts all notes by color, as defined by user?
 -(void)colorSortAllNotes {
-
-    
     NSArray *sortedNotes;
     sortedNotes = [_allNotes sortedArrayUsingSelector:@selector(colorCompare:)];
     _allNotes = sortedNotes.mutableCopy;
@@ -266,6 +265,7 @@
         Note *note = [_allNotes objectAtIndex:i];
         note.slot = i;
         [_allNotes replaceObjectAtIndex:i withObject:note];
+        _masterNotes = [_allNotes mutableCopy];
 //        [note saveNoteToParse:note];
     }
 //    [PFObject saveAll:_allNotes];
@@ -274,13 +274,10 @@
 
 //updates allnotes to only include archived notes
 -(void)getAllArchived {
-    
-
-    
     //get all notes from web
     NSMutableArray *archivedNotes = [[NSMutableArray alloc] init];
-    for (int i = 0; i<_allNotes.count; i++) {
-        Note *note = [_allNotes objectAtIndex:i];
+    for (int i = 0; i<_masterNotes.count; i++) {
+        Note *note = [_masterNotes objectAtIndex:i];
         if(note.archived) {
             [archivedNotes addObject:note];
         }
@@ -294,8 +291,8 @@
 -(void)getAllNonArchived {
     //get all notes from web
     NSMutableArray *nonArchivedNotes = [[NSMutableArray alloc] init];
-    for (int i = 0; i<_allNotes.count; i++) {
-        Note *note = [_allNotes objectAtIndex:i];
+    for (int i = 0; i<_masterNotes.count; i++) {
+        Note *note = [_masterNotes objectAtIndex:i];
         if(!note.archived) {
             [nonArchivedNotes addObject:note];
         }
@@ -343,9 +340,17 @@
 
 -(void)editNoteCell:(NoteCell*)noteCell
 {
+    //scroll to top
+    NSIndexPath *indexPath = [self.ListView indexPathForCell:noteCell];
+    [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
+    
+    
     //flip booleans
     noteCell.noteText.userInteractionEnabled = !noteCell.noteText.userInteractionEnabled;
     noteCell.noteText.editable = !noteCell.noteText.editable;
+    
+
+    
     
     if(noteCell.noteText.editable) {
         [self textViewShouldBeginEditing:noteCell.noteText];
