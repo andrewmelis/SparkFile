@@ -11,6 +11,7 @@
 #import "NoteCell.h"
 #import "NSString+FontAwesome.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ListViewHeader.h"
 
 @interface ListViewController ()
 
@@ -105,21 +106,21 @@
         cell.backgroundColor = note.color;
     
         cell.archiveIcon.backgroundColor = note.color;
-        cell.archiveIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
+        cell.archiveIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:26];
         
         if (note.archived) {
-            cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircle];
+            cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCheckSign];
         } else {
-            cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircleBlank];
+            cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconSignBlank];
         }
         
     
         cell.colorChooserIcon.backgroundColor = note.color;
-        cell.colorChooserIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
-        cell.colorChooserIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCog];
+        cell.colorChooserIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:26];
+        cell.colorChooserIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconAdjust];
         
         cell.editIcon.backgroundColor = note.color;
-        cell.editIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
+        cell.editIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:26];
         cell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEdit];
     
         cell.layer.cornerRadius=5;         //make it pretty
@@ -127,6 +128,40 @@
     }
     
     return cell;
+    
+}
+
+-(UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        ListViewHeader *suppView;
+        suppView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"SuppViewHead" forIndexPath:indexPath];
+        
+        //format icons
+        suppView.systemSettingsIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
+        suppView.systemSettingsIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCog];
+        
+        suppView.colorSortIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
+        suppView.colorSortIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircleBlank];
+
+        suppView.dateSortIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
+        suppView.dateSortIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEllipsisVertical];
+        
+        suppView.archiveIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
+        suppView.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconOkCircle];
+        
+        suppView.createNoteIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
+        suppView.createNoteIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconPlusSign];
+        
+        return suppView;        
+        
+    } else if (kind == UICollectionElementKindSectionFooter ) {
+        UICollectionReusableView *suppView;
+        suppView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"SuppViewFoot" forIndexPath:indexPath];
+        return suppView;
+    }
+    return nil;
     
 }
 
@@ -141,55 +176,6 @@
     }
     else return 0;  //TODO check this later
 
-}
-
-#pragma mark - LXReorderableCollectionViewDataSource methods
-
-- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
-    
-    Note *note = [_allNotes objectAtIndex:fromIndexPath.item];
-    [_allNotes removeObjectAtIndex:fromIndexPath.item];
-    [_allNotes insertObject:note atIndex:toIndexPath.item];
-    //TODO update all indices
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath {
-    
-    return YES;
-}
-
-//sets header for linked cells to zero
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-//    Note *note = [_allNotes objectAtIndex:section];
-//    
-//    if(note != Nil) {
-//        if (note.linkedAbove) {
-//            return CGSizeMake(50, -50); //set this to be smaller?
-//        }
-//    }
-//    return CGSizeMake(50, 50);
-//}
-
-#pragma mark - LXReorderableCollectionViewDelegateFlowLayout methods
-
-- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"will begin drag");
-}
-
-- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"did begin drag");
-}
-
-- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout willEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"will end drag");
-}
-
-- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"did end drag");
 }
 
 
@@ -217,6 +203,45 @@
     CGPoint bottomOffset = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height);
     [self.ListView setContentOffset:bottomOffset animated:NO];
 }
+
+#pragma mark - LXReorderableCollectionViewDataSource methods
+
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
+    
+    Note *note = [_allNotes objectAtIndex:fromIndexPath.item];
+    [_allNotes removeObjectAtIndex:fromIndexPath.item];
+    [_allNotes insertObject:note atIndex:toIndexPath.item];
+    //TODO update all indices
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath {
+    
+    return YES;
+}
+
+#pragma mark - LXReorderableCollectionViewDelegateFlowLayout methods
+
+- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout willBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"will begin drag");
+}
+
+- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didBeginDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"did begin drag");
+}
+
+- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout willEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"will end drag");
+}
+
+- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"did end drag");
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

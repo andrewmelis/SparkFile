@@ -51,13 +51,13 @@
                         <color key="backgroundColor" red="0.85757869525547448" green="0.89915031934306522" blue="0.88614849452554745" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="8dw-i9-Stc" customClass="LXReorderableCollectionViewFlowLayout">
                             <size key="itemSize" width="300" height="150"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="0.0" height="60"/>
+                            <size key="footerReferenceSize" width="0.0" height="10"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NoteCell" id="iE9-Wy-CEr" customClass="NoteCell">
-                                <rect key="frame" x="10" y="0.0" width="300" height="150"/>
+                                <rect key="frame" x="10" y="60" width="300" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="150"/>
@@ -124,6 +124,76 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SuppViewHead" id="4dI-48-Om8" customClass="ListViewHeader">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Settings" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9A8-7m-6ar">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.17254901960784313" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="Note" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1T-9z-ndW">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="vOf-5U-dia"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qge-Wa-jes">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="D" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWm-Na-fVI">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tnv-AP-L4l">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="32" id="HSc-gS-o1P"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="9A8-7m-6ar" firstAttribute="top" secondItem="4dI-48-Om8" secondAttribute="top" constant="9" type="user" id="6Xl-Qm-qOf"/>
+                                <constraint firstItem="pWm-Na-fVI" firstAttribute="top" secondItem="Tnv-AP-L4l" secondAttribute="top" type="default" id="BxC-If-oaC"/>
+                                <constraint firstItem="Tnv-AP-L4l" firstAttribute="top" secondItem="O1T-9z-ndW" secondAttribute="top" type="default" id="DPp-ph-sTz"/>
+                                <constraint firstItem="O1T-9z-ndW" firstAttribute="leading" secondItem="4dI-48-Om8" secondAttribute="leading" constant="286" id="FnX-xa-cbG"/>
+                                <constraint firstAttribute="bottom" secondItem="pWm-Na-fVI" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Keb-bt-eVn"/>
+                                <constraint firstItem="pWm-Na-fVI" firstAttribute="top" secondItem="qge-Wa-jes" secondAttribute="top" type="default" id="Kh8-TV-Tn2"/>
+                                <constraint firstAttribute="bottom" secondItem="qge-Wa-jes" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="VOy-8n-cgg"/>
+                                <constraint firstAttribute="bottom" secondItem="9A8-7m-6ar" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="aeN-KP-wyZ"/>
+                                <constraint firstAttribute="centerX" secondItem="pWm-Na-fVI" secondAttribute="centerX" type="user" id="bz5-iL-NTe"/>
+                                <constraint firstItem="qge-Wa-jes" firstAttribute="top" secondItem="9A8-7m-6ar" secondAttribute="top" type="default" id="cdp-zW-Zbv"/>
+                                <constraint firstAttribute="bottom" secondItem="O1T-9z-ndW" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="gvU-71-GNi"/>
+                                <constraint firstItem="9A8-7m-6ar" firstAttribute="leading" secondItem="4dI-48-Om8" secondAttribute="leading" constant="6" type="user" id="kY3-bx-EgH"/>
+                                <constraint firstAttribute="bottom" secondItem="Tnv-AP-L4l" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="o0h-rb-cNk"/>
+                                <constraint firstItem="pWm-Na-fVI" firstAttribute="leading" secondItem="qge-Wa-jes" secondAttribute="trailing" constant="16" type="user" id="qs8-t8-Gc6"/>
+                                <constraint firstItem="Tnv-AP-L4l" firstAttribute="leading" secondItem="pWm-Na-fVI" secondAttribute="trailing" constant="14" type="user" id="rDd-NV-q7r"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="archiveIcon" destination="Tnv-AP-L4l" id="4JJ-Rz-VZz"/>
+                                <outlet property="colorSortIcon" destination="qge-Wa-jes" id="UWU-iu-Aq3"/>
+                                <outlet property="createNoteIcon" destination="O1T-9z-ndW" id="UQi-n1-hpb"/>
+                                <outlet property="dateSortIcon" destination="pWm-Na-fVI" id="frQ-zh-X6l"/>
+                                <outlet property="systemSettingsIcon" destination="9A8-7m-6ar" id="gJm-zM-b8C"/>
+                            </connections>
+                        </collectionReusableView>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SuppViewFoot" id="5Er-Yr-Ted">
+                            <rect key="frame" x="0.0" y="210" width="320" height="10"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="dDG-e4-P7i" id="OMv-Pq-Lwo"/>
                             <outlet property="delegate" destination="dDG-e4-P7i" id="LcV-bA-LNA"/>
@@ -149,6 +219,16 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="ListView" candidateClass="UICollectionView"/>
+            </relationships>
+        </class>
+        <class className="ListViewHeader" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListViewHeader.h"/>
+            <relationships>
+                <relationship kind="outlet" name="archiveIcon" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="colorSortIcon" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="createNoteIcon" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="dateSortIcon" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="systemSettingsIcon" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">

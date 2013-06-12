@@ -60,6 +60,7 @@
 		2847234C176629D800157935 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2847234B176629D800157935 /* ListViewController.m */; };
 		285496F017682BB300C1E930 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 285496EF17682BB300C1E930 /* FontAwesome.ttf */; };
 		285496F317682CC700C1E930 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496F217682CC700C1E930 /* NSString+FontAwesome.m */; };
+		285496F717686EB400C1E930 /* ListViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496F617686EB400C1E930 /* ListViewHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +143,8 @@
 		285496EF17682BB300C1E930 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
 		285496F117682CC700C1E930 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
 		285496F217682CC700C1E930 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		285496F517686EB400C1E930 /* ListViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewHeader.h; sourceTree = "<group>"; };
+		285496F617686EB400C1E930 /* ListViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewHeader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +186,8 @@
 			children = (
 				2805A6931766CD76000A9716 /* NoteCell.h */,
 				2805A6941766CD76000A9716 /* NoteCell.m */,
+				285496F517686EB400C1E930 /* ListViewHeader.h */,
+				285496F617686EB400C1E930 /* ListViewHeader.m */,
 			);
 			name = "Collection View Element Classes";
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 				2805A6911766C80B000A9716 /* Note.m in Sources */,
 				2805A6951766CD76000A9716 /* NoteCell.m in Sources */,
 				285496F317682CC700C1E930 /* NSString+FontAwesome.m in Sources */,
+				285496F717686EB400C1E930 /* ListViewHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
