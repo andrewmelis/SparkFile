@@ -61,7 +61,7 @@
         else if (touch.view.tag == 30)
     {
         //open edit modal
-        NSLog(@"testing tags");
+        NSLog(@"testing tags -- edit button");
     }
 
 

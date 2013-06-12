@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "FlatUIKit.h"
-#import "UINavigationBar+FlatUI.h"
-#import "UIBarButtonItem+FlatUI.h"
+#import "ListViewController.h"
 
 @interface ListViewHeader : UICollectionReusableView
+
+@property (weak) ListViewController *parentViewController;
+
 @property (weak, nonatomic) IBOutlet UILabel *createNoteIcon;
 @property (weak, nonatomic) IBOutlet UILabel *systemSettingsIcon;
 @property (weak, nonatomic) IBOutlet UILabel *colorSortIcon;

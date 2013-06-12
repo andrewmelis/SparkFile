@@ -138,19 +138,26 @@
         ListViewHeader *suppView;
         suppView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"SuppViewHead" forIndexPath:indexPath];
         
+        suppView.parentViewController = self;
+        
         //format icons
+        suppView.systemSettingsIcon.backgroundColor = [UIColor clearColor];
         suppView.systemSettingsIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
         suppView.systemSettingsIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCog];
         
+        suppView.colorSortIcon.backgroundColor = [UIColor clearColor];
         suppView.colorSortIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
         suppView.colorSortIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircleBlank];
 
+        suppView.dateSortIcon.backgroundColor = [UIColor clearColor];
         suppView.dateSortIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
-        suppView.dateSortIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEllipsisVertical];
+        suppView.dateSortIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconReorder];
         
+        suppView.archiveIcon.backgroundColor = [UIColor clearColor];
         suppView.archiveIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
         suppView.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconOkCircle];
         
+        suppView.createNoteIcon.backgroundColor = [UIColor clearColor];
         suppView.createNoteIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
         suppView.createNoteIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconPlusSign];
         
