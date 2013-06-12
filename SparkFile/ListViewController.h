@@ -15,4 +15,7 @@
 @property (strong, nonatomic) NSMutableArray *allNotes;
 @property (strong, nonatomic) IBOutlet UICollectionView *ListView;
 
+-(void)colorSortAllNotes;
+-(void)indexSortAllNotes;
+
 @end

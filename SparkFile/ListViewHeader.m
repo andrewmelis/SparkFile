@@ -34,9 +34,8 @@
         self.dateSortIcon.textColor = [UIColor silverColor];
         self.colorSortIcon.textColor = [UIColor midnightBlueColor];
         
-        //move to archive
-//        NSLog(@"test archive tag + %d",self.note.archived);
-//        [self.parentViewController.ListView reloadData];
+        [self.parentViewController colorSortAllNotes];
+        
         
     }
     else if (touch.view.tag == 80)
@@ -45,6 +44,8 @@
         self.colorSortIcon.textColor = [UIColor silverColor];
         self.archiveIcon.textColor = [UIColor silverColor];
         self.dateSortIcon.textColor = [UIColor midnightBlueColor];
+        
+        [self.parentViewController indexSortAllNotes];
         
     }
     else if (touch.view.tag == 70)

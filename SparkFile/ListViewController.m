@@ -35,45 +35,39 @@
     _allNotes = [[NSMutableArray alloc] init];
     
     Note *note = [[Note alloc] init];
-    note.linkedAbove = false;
-    note.linkedBelow = false;
     note.text = @"this is my first note";
     note.color = [UIColor emerlandColor];
+    note.slot = 0;
     [_allNotes addObject:note];
     
     Note *note2 = [[Note alloc] init];
-    note2.linkedAbove = false;
-    note2.linkedBelow = false;
     note2.text = @"this is my second note";
-    note2.color = [UIColor greenSeaColor];
+    note2.color = [UIColor alizarinColor];
+    note2.slot = 1;
     [_allNotes addObject:note2];
     
     Note *note3 = [[Note alloc] init];
-    note3.linkedAbove = false;
-    note3.linkedBelow = false;
     note3.text = @"this is my third note";
-    note3.color = [UIColor pumpkinColor];
+    note3.color = [UIColor amethystColor];
+    note3.slot = 2;
     [_allNotes addObject:note3];
     
     Note *note4 = [[Note alloc] init];
-    note4.linkedAbove = false;
-    note4.linkedBelow = true;
     note4.text = @"this is my fourth note";
     note4.color = [UIColor midnightBlueColor];
+    note4.slot = 3;
     [_allNotes addObject:note4];
     
     Note *note5 = [[Note alloc] init];
-    note5.linkedAbove = true;
-    note5.linkedBelow = false;
     note5.text = @"this is my fifth note";
-    note5.color = [UIColor nephritisColor];
+    note5.color = [UIColor alizarinColor];
+    note5.slot = 4;
     [_allNotes addObject:note5];
     
     Note *note6 = [[Note alloc] init];
-    note6.linkedAbove = false;
-    note6.linkedBelow = false;
     note6.text = @"this is my sixth note";
     note6.color = [UIColor sunflowerColor];
+    note6.slot = 5;
     [_allNotes addObject:note6];
     
     NSLog(@"stop");
@@ -211,6 +205,29 @@
     [self.ListView setContentOffset:bottomOffset animated:NO];
 }
 
+//color sort helper
+-(void)colorSortAllNotes {
+    NSArray *sortedNotes;
+    sortedNotes = [_allNotes sortedArrayUsingSelector:@selector(colorCompare:)];
+    _allNotes = sortedNotes.mutableCopy;
+    [self.ListView reloadData];
+}
+
+-(void)indexSortAllNotes {
+    NSArray *sortedNotes;
+    sortedNotes = [_allNotes sortedArrayUsingSelector:@selector(indexCompare:)];
+    _allNotes = sortedNotes.mutableCopy;
+    [self.ListView reloadData];
+}
+
+-(void)updateAllNotesSlotNumbers {
+    for (int i = 0; i<_allNotes.count; i++) {
+        Note *note = [_allNotes objectAtIndex:i];
+        note.slot = i;
+        [_allNotes replaceObjectAtIndex:i withObject:note];
+    }
+}
+
 #pragma mark - LXReorderableCollectionViewDataSource methods
 
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
@@ -245,6 +262,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self updateAllNotesSlotNumbers];   //update the slots for sorting later
     NSLog(@"did end drag");
 }
 

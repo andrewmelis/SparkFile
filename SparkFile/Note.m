@@ -12,11 +12,27 @@
 
 @synthesize text;
 @synthesize slot;
-@synthesize linkedAbove;
-@synthesize linkedBelow;
 @synthesize color;
-@synthesize dateAdded;
-@synthesize dateModified;
 @synthesize archived;
+
+- (NSComparisonResult)colorCompare:(Note *)otherObject {
+    
+    NSMutableArray *prefs = [[NSMutableArray alloc] initWithObjects:
+                                        [UIColor alizarinColor],
+                                        [UIColor sunflowerColor],
+                                        [UIColor emerlandColor],
+                                        [UIColor peterRiverColor],
+                                        [UIColor amethystColor],
+                                        [UIColor midnightBlueColor],
+                                        nil];
+    return [prefs indexOfObject:self.color] - [prefs indexOfObject:otherObject.color];
+}
+
+- (NSComparisonResult)indexCompare:(Note *)otherObject {
+    
+    return self.slot - otherObject.slot;
+    
+}
+
 
 @end

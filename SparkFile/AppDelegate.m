@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-
+#import "UIColor+FlatUI.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -18,11 +18,28 @@
     [Parse setApplicationId:@"HvfydIIRoTKeYthy7jAhOGRE9F56OtA37Yke9liM"
                   clientKey:@"NZmaBjBKqhE1hMGQ9AwO6gr0b4DviMzlEVxGYeEU"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+    {
+        // app already launched
+        //load user from Parse web
+    }
+    else
+    {
+        
+        
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+//        [[NSUserDefaults standardUserDefaults] setObject:colorPreferences forKey:@"color_preferences"];
+//        
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        
+        //enabling anonymous user
+        [PFUser enableAutomaticUser];
+        [[PFUser currentUser] incrementKey:@"RunCount"];
+        [[PFUser currentUser] saveInBackground];
+    }
     
-    //enabling anonymous user
-    [PFUser enableAutomaticUser];
-    [[PFUser currentUser] incrementKey:@"RunCount"];
-    [[PFUser currentUser] saveInBackground];
+
     
     
     
