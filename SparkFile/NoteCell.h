@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Note.h"
 #import "ListViewController.h"
+@class ListViewController;
 
 @interface NoteCell : UICollectionViewCell
 

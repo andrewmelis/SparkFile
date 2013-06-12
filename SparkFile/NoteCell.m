@@ -45,23 +45,11 @@
         //open edit modal
         NSLog(@"testing tags -- edit button");
         
+        [self.parentViewController editNoteCell:self];
         
         
         
-        
-        //flip booleans
-        self.noteText.userInteractionEnabled = !self.noteText.userInteractionEnabled;
-        self.noteText.editable = !self.noteText.editable;
-        
-        if(self.noteText.editable) {
-            [self.parentViewController textViewShouldBeginEditing:_noteText];
 
-            [self.noteText becomeFirstResponder];
-        }
-        else {
-            self.note.text = self.noteText.text;
-            [self.noteText endEditing:YES];
-        }
     }
 
 }

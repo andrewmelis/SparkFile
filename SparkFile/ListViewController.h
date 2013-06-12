@@ -10,7 +10,9 @@
 #import "LXReorderableCollectionViewFlowLayout.h"
 #import "FUIAlertView.h"
 #import "ListViewHeader.h"
+#import "NoteCell.h"
 @class ListViewHeader;
+@class NoteCell;
 
 @interface ListViewController : UICollectionViewController <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout, FUIAlertViewDelegate, UITextViewDelegate>
 
@@ -26,5 +28,6 @@
 -(void)getAllNonArchived;
 -(void)archiveNote:(Note*)note;
 -(void)createNote;
+-(void)editNoteCell:(NoteCell*)noteCell;
 
 @end

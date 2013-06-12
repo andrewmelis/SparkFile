@@ -332,21 +332,31 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
     [self.ListView insertItemsAtIndexPaths:indexPaths];
+    NoteCell *newCell = (NoteCell*)[self.ListView cellForItemAtIndexPath:indexPath];
+    [self editNoteCell: newCell];
 }
 
-//textview methods
-//-(BOOL)textViewShouldEndEditing:(UITextView *)textView
-//{
-//    
-//    [textView resignFirstResponder];
-//    return YES;
-//}
-//
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     return YES;
 }
 
+-(void)editNoteCell:(NoteCell*)noteCell
+{
+    //flip booleans
+    noteCell.noteText.userInteractionEnabled = !noteCell.noteText.userInteractionEnabled;
+    noteCell.noteText.editable = !noteCell.noteText.editable;
+    
+    if(noteCell.noteText.editable) {
+        [self textViewShouldBeginEditing:noteCell.noteText];
+        
+        [noteCell.noteText becomeFirstResponder];
+    }
+    else {
+        noteCell.note.text = noteCell.noteText.text;
+        [noteCell.noteText endEditing:YES];
+    }
+}
 
 #pragma mark - LXReorderableCollectionViewDataSource methods
 
