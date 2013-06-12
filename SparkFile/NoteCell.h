@@ -1,4 +1,4 @@
-//
+    //
 //  NoteCell.h
 //  SparkFile
 //
@@ -14,5 +14,7 @@
 
 @property (strong, nonatomic) Note *note;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
+@property (weak, nonatomic) IBOutlet UILabel *archiveIcon;
+@property (weak, nonatomic) IBOutlet UILabel *colorChooserIcon;
 
 @end

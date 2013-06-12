@@ -8,6 +8,7 @@
 
 #import "NoteCell.h"
 
+
 @implementation NoteCell
 
 - (id)initWithFrame:(CGRect)frame
@@ -16,6 +17,7 @@
     if (self) {
         // Initialization code
     }
+
     return self;
 }
 

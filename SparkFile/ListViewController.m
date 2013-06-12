@@ -9,6 +9,7 @@
 #import "ListViewController.h"
 #import "Note.h"
 #import "NoteCell.h"
+#import "NSString+FontAwesome.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface ListViewController ()
@@ -106,6 +107,16 @@
             [[cell noteText] setBackgroundColor:[UIColor clearColor]];
             [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
             cell.backgroundColor = note.color;
+        
+            cell.archiveIcon.backgroundColor = note.color;
+            cell.archiveIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+            cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircleBlank];
+        
+            cell.colorChooserIcon.backgroundColor = note.color;
+            cell.colorChooserIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+            cell.colorChooserIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCog];
+        
+            cell.layer.cornerRadius=5;         //make it pretty
             
 //        }
 //        else if (note.linkedBelow) {
@@ -123,8 +134,6 @@
 //        cell.backgroundColor = note.color;
     }
     
-    
-    cell.layer.cornerRadius=5;         //make it pretty
     return cell;
     
 }
