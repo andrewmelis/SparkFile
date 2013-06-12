@@ -13,6 +13,7 @@
 #import "UIColor+FlatUI.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ListViewHeader.h"
+#import "NSString+FontAwesome.h"
 
 @interface ListViewController ()
 
@@ -40,7 +41,7 @@
     _allNotes = [[NSMutableArray alloc] init];
     
     Note *note = [[Note alloc] init];
-    note.text = @"this is my first note";
+    note.text = @"one billion dollars";
     note.color = [UIColor emerlandColor];
     note.slot = 5;
     NSUUID *uuid = [NSUUID UUID];
@@ -49,7 +50,7 @@
     [_allNotes addObject:note];
     
     Note *note2 = [[Note alloc] init];
-    note2.text = @"this is my second note";
+    note2.text = @"so much money";
     note2.color = [UIColor sunflowerColor];
     note2.slot = 4;
     NSUUID *uuid2 = [NSUUID UUID];
@@ -58,7 +59,7 @@
     [_allNotes addObject:note2];
     
     Note *note3 = [[Note alloc] init];
-    note3.text = @"this is my third note";
+    note3.text = @"this is my third smart thing";
     note3.color = [UIColor amethystColor];
     note3.slot = 3;
     NSUUID *uuid3 = [NSUUID UUID];
@@ -67,7 +68,7 @@
     [_allNotes addObject:note3];
     
     Note *note4 = [[Note alloc] init];
-    note4.text = @"this is my fourth note";
+    note4.text = @"this is my fourth facebook-level game changer";
     note4.color = [UIColor midnightBlueColor];
     note4.slot = 2;
     NSUUID *uuid4 = [NSUUID UUID];
@@ -76,7 +77,7 @@
     [_allNotes addObject:note4];
     
     Note *note5 = [[Note alloc] init];
-    note5.text = @"this is my fifth note";
+    note5.text = @"this is my fifth idea";
     note5.color = [UIColor alizarinColor];
     note5.slot = 1;
     NSUUID *uuid5 = [NSUUID UUID];
@@ -85,7 +86,7 @@
     [_allNotes addObject:note5];
     
     Note *note6 = [[Note alloc] init];
-    note6.text = @"this is my sixth note";
+    note6.text = @"this is my sixth thought";
     note6.color = [UIColor emerlandColor];
     note6.slot = 0;
     NSUUID *uuid6 = [NSUUID UUID];
@@ -349,16 +350,20 @@
     noteCell.noteText.userInteractionEnabled = !noteCell.noteText.userInteractionEnabled;
     noteCell.noteText.editable = !noteCell.noteText.editable;
     
+    //flip icon
+    noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEditSign];
+    
 
     
     
     if(noteCell.noteText.editable) {
         [self textViewShouldBeginEditing:noteCell.noteText];
-        
+        noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEditSign];
         [noteCell.noteText becomeFirstResponder];
     }
     else {
         noteCell.note.text = noteCell.noteText.text;
+        noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEdit];
         [noteCell.noteText endEditing:YES];
     }
 }
