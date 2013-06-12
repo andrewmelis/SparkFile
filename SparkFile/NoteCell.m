@@ -8,6 +8,7 @@
 
 #import "NoteCell.h"
 #import "ListViewController.h"
+#import "EditViewController.h"
 #import "NSString+FontAwesome.h"
 
 
@@ -45,9 +46,23 @@
         //open edit modal
         NSLog(@"testing tags -- edit button");
         
+        
+        
+        
+        
         //flip booleans
         self.noteText.userInteractionEnabled = !self.noteText.userInteractionEnabled;
         self.noteText.editable = !self.noteText.editable;
+        
+        if(self.noteText.editable) {
+            [self.parentViewController textViewShouldBeginEditing:_noteText];
+
+            [self.noteText becomeFirstResponder];
+        }
+        else {
+            self.note.text = self.noteText.text;
+            [self.noteText endEditing:YES];
+        }
     }
 
 }

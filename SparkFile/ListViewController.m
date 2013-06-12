@@ -307,16 +307,29 @@
 -(void)archiveNote:(Note*)note {
     //sync note with web
     [_allNotes removeObject:note];
-    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:note.slot];
-    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+//    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:note.slot];
+//    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
     
-    [self.ListView deleteItemsAtIndexPaths:indexPaths];
+    [self.ListView delete:note];
+//    [self.ListView deleteItemsAtIndexPaths:indexPaths];
     
     
 //    [self.ListView reloadData];
     
 }
 
+//textview methods
+-(BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    
+    [textView resignFirstResponder];
+    return YES;
+}
+
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    return YES;
+}
 
 
 #pragma mark - LXReorderableCollectionViewDataSource methods

@@ -12,7 +12,7 @@
 #import "ListViewHeader.h"
 @class ListViewHeader;
 
-@interface ListViewController : UICollectionViewController <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout, FUIAlertViewDelegate>
+@interface ListViewController : UICollectionViewController <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout, FUIAlertViewDelegate, UITextViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *allNotes;
 @property (strong, nonatomic) NSMutableArray *masterNotes;  //nothing ever removed, syncs with web
