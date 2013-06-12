@@ -17,5 +17,6 @@
 @synthesize color;
 @synthesize dateAdded;
 @synthesize dateModified;
+@synthesize archived;
 
 @end

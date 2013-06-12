@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Note.h"
+@class Note;
 
 @protocol FUIAlertViewDelegate;
 
@@ -27,6 +29,14 @@
 // cancel button which will be positioned based on HI requirements. buttons cannot be customized.
 - (NSInteger)addButtonWithTitle:(NSString *)title;    // returns index of button. 0 based.
 - (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex;
+
+
+
+//added these myself
+-(void)setButtonColorsAtIndex:(NSUInteger)buttonIndex color:(UIColor*)color shadowColor:(UIColor*)shadowColor;
+//-(NSInteger) buttonPressedGetIndex:(FUIButton*)sender;
+@property (strong, nonatomic) Note *note;
+
 @property(nonatomic,readonly) NSInteger numberOfButtons;
 @property(nonatomic) NSInteger cancelButtonIndex;      // if the delegate does not implement -alertViewCancel:, we pretend this button was clicked on. default is -1
 

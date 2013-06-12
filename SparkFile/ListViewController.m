@@ -87,8 +87,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier_solo    = @"NoteCell";
-    static NSString *CellIdentifier_set     = @"LinkedNoteCell";
-    static NSString *CellIdentifier_linked  = @"InternalLinkedNoteCell";
     
 
     NoteCell *cell;
@@ -97,41 +95,28 @@
     if ([_allNotes objectAtIndex:indexPath.item]) {         //if there's an object at index
         
         Note *note = [_allNotes objectAtIndex:indexPath.item];      //get that note
+    
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_solo forIndexPath:indexPath];
+        cell.note = note;
+        cell.parentViewController = self;
+        NSLog(@"unlinked cell dequeued");
         
-//        if(!note.linkedBelow) {
-            cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_solo forIndexPath:indexPath];
-            NSLog(@"unlinked cell dequeued");
+        //cell formatting -- good stuff
+        [[cell noteText] setText:note.text];
+        [[cell noteText] setBackgroundColor:[UIColor clearColor]];
+        [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
+        cell.backgroundColor = note.color;
+    
+        cell.archiveIcon.backgroundColor = note.color;
+        cell.archiveIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+        cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircleBlank];
+    
+        cell.colorChooserIcon.backgroundColor = note.color;
+        cell.colorChooserIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+        cell.colorChooserIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCog];
+    
+        cell.layer.cornerRadius=5;         //make it pretty
             
-            //cell formatting -- good stuff
-            [[cell noteText] setText:note.text];
-            [[cell noteText] setBackgroundColor:[UIColor clearColor]];
-            [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
-            cell.backgroundColor = note.color;
-        
-            cell.archiveIcon.backgroundColor = note.color;
-            cell.archiveIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
-            cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircleBlank];
-        
-            cell.colorChooserIcon.backgroundColor = note.color;
-            cell.colorChooserIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
-            cell.colorChooserIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCog];
-        
-            cell.layer.cornerRadius=5;         //make it pretty
-            
-//        }
-//        else if (note.linkedBelow) {
-//            cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_set forIndexPath:indexPath];
-//            NSLog(@"linked set dequeued");      //dequeuing collectionview, how get collectionview cell?
-//            
-//            //get
-//        }
-        
-        
-//        //cell formatting -- good stuff
-//        [[cell noteText] setText:note.text];
-//        [[cell noteText] setBackgroundColor:[UIColor clearColor]];
-//        [[cell noteText] setFont:[UIFont boldFlatFontOfSize:16]];
-//        cell.backgroundColor = note.color;
     }
     
     return cell;
@@ -206,6 +191,15 @@
     NSLog(@"selected cell at @%d",indexPath.item);
     [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];      //really want to open modal view with cell and keyboard
     [self.ListView deselectItemAtIndexPath:indexPath animated:YES];
+}
+
+-(void)alertView:(FUIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    FUIButton *button = [alertView.buttons objectAtIndex:buttonIndex];
+    NSLog(@"@%@",alertView.note.color);
+    alertView.note.color = button.buttonColor;
+    NSLog(@"@%@",alertView.note.color);
+    [self.ListView reloadData];
 }
 
 //Scrolls to bottom of scroller

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "LXReorderableCollectionViewFlowLayout.h"
+#import "FUIAlertView.h"
 
-@interface ListViewController : UICollectionViewController <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout>
+@interface ListViewController : UICollectionViewController <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout, FUIAlertViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *allNotes;
 @property (strong, nonatomic) IBOutlet UICollectionView *ListView;

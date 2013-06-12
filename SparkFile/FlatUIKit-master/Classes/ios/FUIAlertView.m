@@ -16,6 +16,7 @@
 @end
 
 @implementation FUIAlertView
+@synthesize note;
 
 - (id)initWithTitle:(NSString *)title
             message:(NSString *)message
@@ -218,8 +219,20 @@
     return self.buttons.count;
 }
 
+//added this one myself
+-(void)setButtonColorsAtIndex:(NSUInteger)buttonIndex color:(UIColor*)color shadowColor:(UIColor*)shadowColor {
+    if([self.buttons objectAtIndex:buttonIndex]) {
+        FUIButton *button = [self.buttons objectAtIndex:buttonIndex];
+        NSLog(@"button at index %d color: %@ with shadowheight: %f",buttonIndex,button.shadowColor,button.shadowHeight);
+        button.buttonColor = color;
+        button.shadowColor = shadowColor;
+        [self.buttons replaceObjectAtIndex:buttonIndex withObject:button];
+    }    
+}
+
 - (void) buttonPressed:(FUIButton *)sender {
     NSInteger index = [self.buttons indexOfObject:sender];
+    NSLog(@"%i",index);
     if ([self.delegate respondsToSelector:@selector(alertView:clickedButtonAtIndex:)]) {
         [self.delegate alertView:self clickedButtonAtIndex:index];
     }

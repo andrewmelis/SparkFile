@@ -18,6 +18,7 @@
 @property (strong, nonatomic) UIColor *color;
 @property (strong, nonatomic) NSDate *dateAdded;
 @property (strong, nonatomic) NSDate *dateModified;
+@property (assign, nonatomic) BOOL archived;
 
 
 @end

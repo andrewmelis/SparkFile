@@ -11,7 +11,7 @@
 
 @interface NoteCell : UICollectionViewCell
 
-
+@property (weak) UICollectionViewController *parentViewController;
 @property (strong, nonatomic) Note *note;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UILabel *archiveIcon;
