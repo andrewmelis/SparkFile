@@ -30,7 +30,7 @@
 
 - (NSComparisonResult)indexCompare:(Note *)otherObject {
     
-    return self.slot - otherObject.slot;
+    return  otherObject.slot - self.slot;
     
 }
 

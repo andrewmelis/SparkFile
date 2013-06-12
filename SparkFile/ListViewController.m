@@ -10,6 +10,7 @@
 #import "Note.h"
 #import "NoteCell.h"
 #import "NSString+FontAwesome.h"
+#import "UIColor+FlatUI.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ListViewHeader.h"
 
@@ -70,13 +71,14 @@
     note6.slot = 5;
     [_allNotes addObject:note6];
     
-    NSLog(@"stop");
+    NSLog(@"temp data entered");
+    [self indexSortAllNotes];
     
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self scrollToBottom];
+//    [self scrollToBottom];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -205,21 +207,27 @@
     [self.ListView setContentOffset:bottomOffset animated:NO];
 }
 
-//color sort helper
+//sorts all notes by color, as defined by user?
 -(void)colorSortAllNotes {
+
+    
     NSArray *sortedNotes;
     sortedNotes = [_allNotes sortedArrayUsingSelector:@selector(colorCompare:)];
     _allNotes = sortedNotes.mutableCopy;
     [self.ListView reloadData];
 }
 
+//sorts all the notes by slot index
 -(void)indexSortAllNotes {
+
+    
     NSArray *sortedNotes;
     sortedNotes = [_allNotes sortedArrayUsingSelector:@selector(indexCompare:)];
     _allNotes = sortedNotes.mutableCopy;
     [self.ListView reloadData];
 }
 
+//updates persistent slot index of each note, for proper "date" / dragged sorting
 -(void)updateAllNotesSlotNumbers {
     for (int i = 0; i<_allNotes.count; i++) {
         Note *note = [_allNotes objectAtIndex:i];
@@ -228,8 +236,11 @@
     }
 }
 
-
+//updates allnotes to only include archived notes
 -(void)getAllArchived {
+    
+
+    
     //get all notes from web
     NSMutableArray *archivedNotes = [[NSMutableArray alloc] init];
     for (int i = 0; i<_allNotes.count; i++) {
@@ -243,6 +254,7 @@
     
 }
 
+//updates allnotes to only include non-archived notes
 -(void)getAllNonArchived {
     //get all notes from web
     NSMutableArray *nonArchivedNotes = [[NSMutableArray alloc] init];
@@ -254,6 +266,19 @@
     }
     _allNotes = [nonArchivedNotes mutableCopy];
     [self.ListView reloadData];
+}
+
+-(void)archiveNote:(Note*)note {
+    //sync note with web
+    [_allNotes removeObject:note];
+    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:note.slot];
+    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+    
+    [self.ListView deleteItemsAtIndexPaths:indexPaths];
+    
+    
+//    [self.ListView reloadData];
+    
 }
 
 

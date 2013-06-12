@@ -19,4 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *colorChooserIcon;
 @property (weak, nonatomic) IBOutlet UILabel *editIcon;
 
+
+-(void)showColorPicker;
+-(void)moveSelfToArchive;
 @end

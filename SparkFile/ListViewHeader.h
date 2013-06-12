@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FlatUIKit.h"
 #import "ListViewController.h"
+@class ListViewController;
 
 @interface ListViewHeader : UICollectionReusableView
 

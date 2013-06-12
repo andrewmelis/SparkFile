@@ -24,15 +24,13 @@
         // app already launched
         //load user from Parse web
     }
-    else
-    {
+    else {
         
+        //need to make this a first launch date rather than bool
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         
-//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
-//        [[NSUserDefaults standardUserDefaults] setObject:colorPreferences forKey:@"color_preferences"];
-//        
-//        [[NSUserDefaults standardUserDefaults] synchronize];
-//        
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         //enabling anonymous user
         [PFUser enableAutomaticUser];
         [[PFUser currentUser] incrementKey:@"RunCount"];

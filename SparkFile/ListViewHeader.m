@@ -30,6 +30,7 @@
     } else if (touch.view.tag == 90)    //archive button
     {
         NSLog(@"testing tags -- color sort button");
+
         self.archiveIcon.textColor = [UIColor silverColor];
         self.dateSortIcon.textColor = [UIColor silverColor];
         self.colorSortIcon.textColor = [UIColor midnightBlueColor];
@@ -42,9 +43,12 @@
     else if (touch.view.tag == 80)
     {
         NSLog(@"testing tags -- date sort button");
+
+
         self.colorSortIcon.textColor = [UIColor silverColor];
         self.archiveIcon.textColor = [UIColor silverColor];
         self.dateSortIcon.textColor = [UIColor midnightBlueColor];
+        
         
         [self.parentViewController getAllNonArchived];
         [self.parentViewController indexSortAllNotes];
@@ -53,9 +57,11 @@
     else if (touch.view.tag == 70)
     {
         NSLog(@"testing tags -- archive button");
+        
         self.dateSortIcon.textColor = [UIColor silverColor];
         self.colorSortIcon.textColor = [UIColor silverColor];
         self.archiveIcon.textColor = [UIColor midnightBlueColor];
+
         
         [self.parentViewController getAllArchived];
     }
