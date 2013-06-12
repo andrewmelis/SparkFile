@@ -228,6 +228,33 @@
     }
 }
 
+
+-(void)getAllArchived {
+    //get all notes from web
+    NSMutableArray *archivedNotes = [[NSMutableArray alloc] init];
+    for (int i = 0; i<_allNotes.count; i++) {
+        Note *note = [_allNotes objectAtIndex:i];
+        if(note.archived) {
+            [archivedNotes addObject:note];
+        }
+    }
+    _allNotes = archivedNotes;
+    [self.ListView reloadData];
+    
+}
+
+-(void)getAllNonArchived {
+    //get all notes from web
+    for (int i = 0; i<_allNotes.count; i++) {
+        Note *note = [_allNotes objectAtIndex:i];
+        if(note.archived) {
+            [_allNotes removeObject:note];
+        }
+    }
+    [self.ListView reloadData];
+}
+
+
 #pragma mark - LXReorderableCollectionViewDataSource methods
 
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
@@ -265,6 +292,7 @@
     [self updateAllNotesSlotNumbers];   //update the slots for sorting later
     NSLog(@"did end drag");
 }
+
 
 
 

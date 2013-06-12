@@ -18,4 +18,7 @@
 -(void)colorSortAllNotes;
 -(void)indexSortAllNotes;
 
+-(void)getAllArchived;
+-(void)getAllNonArchived;
+
 @end

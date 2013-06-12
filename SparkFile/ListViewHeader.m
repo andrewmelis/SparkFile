@@ -34,6 +34,7 @@
         self.dateSortIcon.textColor = [UIColor silverColor];
         self.colorSortIcon.textColor = [UIColor midnightBlueColor];
         
+        [self.parentViewController getAllNonArchived];
         [self.parentViewController colorSortAllNotes];
         
         
@@ -45,6 +46,7 @@
         self.archiveIcon.textColor = [UIColor silverColor];
         self.dateSortIcon.textColor = [UIColor midnightBlueColor];
         
+        [self.parentViewController getAllNonArchived];
         [self.parentViewController indexSortAllNotes];
         
     }
@@ -54,6 +56,8 @@
         self.dateSortIcon.textColor = [UIColor silverColor];
         self.colorSortIcon.textColor = [UIColor silverColor];
         self.archiveIcon.textColor = [UIColor midnightBlueColor];
+        
+        [self.parentViewController getAllArchived];
     }
     else if (touch.view.tag == 60)
     {
