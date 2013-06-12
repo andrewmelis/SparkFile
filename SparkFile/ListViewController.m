@@ -89,10 +89,7 @@
     static NSString *CellIdentifier_set     = @"LinkedNoteCell";
     static NSString *CellIdentifier_linked  = @"InternalLinkedNoteCell";
     
-//    if ([collectionView.indexPathsForSelectedItems containsObject:indexPath]) {
-//        [collectionView selectItemAtIndexPath:indexPath animated:FALSE scrollPosition:UICollectionViewScrollPositionNone];
-//        // Select Cell
-//    }
+
     NoteCell *cell;
 //    NoteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_solo forIndexPath:indexPath];
     
@@ -137,6 +134,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+
     if (_allNotes != NULL) {
         return _allNotes.count;
     }
