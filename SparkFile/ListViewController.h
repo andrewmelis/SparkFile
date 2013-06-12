@@ -25,5 +25,6 @@
 -(void)getAllArchived;
 -(void)getAllNonArchived;
 -(void)archiveNote:(Note*)note;
+-(void)createNote;
 
 @end

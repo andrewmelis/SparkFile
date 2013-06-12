@@ -68,6 +68,7 @@
     else if (touch.view.tag == 60)
     {
         NSLog(@"testing tags -- create note button");
+        [self.parentViewController createNote];
     }
     
     

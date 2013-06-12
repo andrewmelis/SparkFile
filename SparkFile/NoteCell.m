@@ -8,7 +8,6 @@
 
 #import "NoteCell.h"
 #import "ListViewController.h"
-#import "EditViewController.h"
 #import "NSString+FontAwesome.h"
 
 
@@ -78,7 +77,7 @@
     
     //TODO figure out indexpaths
     
-//    [self.parentViewController archiveNote:self.note];
+    [self.parentViewController archiveNote:self.note];
     
 }
 

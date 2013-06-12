@@ -266,7 +266,7 @@
         Note *note = [_allNotes objectAtIndex:i];
         note.slot = i;
         [_allNotes replaceObjectAtIndex:i withObject:note];
-        [note saveNoteToParse:note];
+//        [note saveNoteToParse:note];
     }
 //    [PFObject saveAll:_allNotes];
 //     saveAllNotesToParse];
@@ -307,25 +307,41 @@
 -(void)archiveNote:(Note*)note {
     //sync note with web
     [_allNotes removeObject:note];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:note.slot inSection:0];
 //    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:note.slot];
-//    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
     
-    [self.ListView delete:note];
-//    [self.ListView deleteItemsAtIndexPaths:indexPaths];
+//    [self.ListView delete:note];
+    [self.ListView deleteItemsAtIndexPaths:indexPaths];
     
     
-//    [self.ListView reloadData];
+    [self.ListView reloadData];
     
+}
+
+-(void)createNote {
+    Note *note = [[Note alloc] init];
+    note.color = [UIColor midnightBlueColor];
+    note.slot = 0;
+    NSUUID *uuid = [NSUUID UUID];
+    NSLog(@"UUID: %@", [uuid UUIDString]);
+    note.uuid = [uuid UUIDString];
+    
+    [_allNotes insertObject:note atIndex:0];
+    [self updateAllNotesSlotNumbers];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+    [self.ListView insertItemsAtIndexPaths:indexPaths];
 }
 
 //textview methods
--(BOOL)textViewShouldEndEditing:(UITextView *)textView
-{
-    
-    [textView resignFirstResponder];
-    return YES;
-}
-
+//-(BOOL)textViewShouldEndEditing:(UITextView *)textView
+//{
+//    
+//    [textView resignFirstResponder];
+//    return YES;
+//}
+//
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     return YES;
