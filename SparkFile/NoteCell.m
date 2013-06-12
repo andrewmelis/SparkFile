@@ -8,6 +8,7 @@
 
 #import "NoteCell.h"
 #import "ListViewController.h"
+#import "NSString+FontAwesome.h"
 
 
 @implementation NoteCell
@@ -29,7 +30,7 @@
     if(touch.view.tag == 10)    //cogs -- color picker
     {
         //show color picker
-        FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Color-Code" message:@"Choose a color for this note:" delegate:(ListViewController*)self.parentViewController cancelButtonTitle:@"" otherButtonTitles:@"", @"",@"",@"",@"", nil ];
+        FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Color-Code" message:@"Choose a color for this note:" delegate:self.parentViewController cancelButtonTitle:@"" otherButtonTitles:@"", @"",@"",@"",@"", nil ];
         alertView.titleLabel.textColor = [UIColor midnightBlueColor];
         alertView.titleLabel.font = [UIFont boldFlatFontOfSize:20];
         alertView.messageLabel.textColor = [UIColor midnightBlueColor];
@@ -48,19 +49,20 @@
         
         NSLog(@"why is note null? @%@",self.note);
         alertView.note = self.note;
-//        alertView.delegate = (ListViewController*)self.parentViewController;
         [alertView show];
     } else if (touch.view.tag == 20)    //archive button
     {
         //move to archive
         NSLog(@"test archive tag + %d",self.note.archived);
-        self.note.archived = true;
+        self.note.archived = !self.note.archived;
+        [self.parentViewController.ListView reloadData];
+    
     }
-//        else if (touch.view.tag == 30)
-//    {
-//        //open edit modal
-//        NSLog(@"testing tags");
-//    }
+        else if (touch.view.tag == 30)
+    {
+        //open edit modal
+        NSLog(@"testing tags");
+    }
 
 
 

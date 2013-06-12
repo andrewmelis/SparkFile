@@ -87,10 +87,8 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier_solo    = @"NoteCell";
-    
 
     NoteCell *cell;
-//    NoteCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_solo forIndexPath:indexPath];
     
     if ([_allNotes objectAtIndex:indexPath.item]) {         //if there's an object at index
         
@@ -99,7 +97,6 @@
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_solo forIndexPath:indexPath];
         cell.note = note;
         cell.parentViewController = self;
-        NSLog(@"unlinked cell dequeued");
         
         //cell formatting -- good stuff
         [[cell noteText] setText:note.text];
@@ -108,12 +105,22 @@
         cell.backgroundColor = note.color;
     
         cell.archiveIcon.backgroundColor = note.color;
-        cell.archiveIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
-        cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircleBlank];
+        cell.archiveIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
+        
+        if (note.archived) {
+            cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircle];
+        } else {
+            cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCircleBlank];
+        }
+        
     
         cell.colorChooserIcon.backgroundColor = note.color;
-        cell.colorChooserIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+        cell.colorChooserIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
         cell.colorChooserIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconCog];
+        
+        cell.editIcon.backgroundColor = note.color;
+        cell.editIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:30];
+        cell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEdit];
     
         cell.layer.cornerRadius=5;         //make it pretty
             
@@ -193,6 +200,7 @@
     [self.ListView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
+//changes button color from alertview in notecell
 -(void)alertView:(FUIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     FUIButton *button = [alertView.buttons objectAtIndex:buttonIndex];
@@ -202,7 +210,7 @@
     [self.ListView reloadData];
 }
 
-//Scrolls to bottom of scroller
+//Scrolls to bottom of scrollview
 //http://stackoverflow.com/questions/14760496/uicollectionview-automatically-scroll-to-bottom-when-screen-loads
 -(void)scrollToBottom
 {

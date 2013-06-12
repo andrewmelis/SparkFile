@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "Note.h"
+#import "ListViewController.h"
 
 @interface NoteCell : UICollectionViewCell
 
-@property (weak) UICollectionViewController *parentViewController;
+@property (weak) ListViewController *parentViewController;
 @property (strong, nonatomic) Note *note;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UILabel *archiveIcon;
 @property (weak, nonatomic) IBOutlet UILabel *colorChooserIcon;
+@property (weak, nonatomic) IBOutlet UILabel *editIcon;
 
 @end
