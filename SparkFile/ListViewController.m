@@ -28,51 +28,73 @@
     
     
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    NSArray *temp;
+    [PFObject fetchAll:temp];
+    _allNotes = [temp mutableCopy];
     
-    self.ListView.delegate = self;
-    self.ListView.dataSource = self;
-    
-    _allNotes = [[NSMutableArray alloc] init];
-    
-    Note *note = [[Note alloc] init];
-    note.text = @"this is my first note";
-    note.color = [UIColor emerlandColor];
-    note.slot = 0;
-    [_allNotes addObject:note];
-    
-    Note *note2 = [[Note alloc] init];
-    note2.text = @"this is my second note";
-    note2.color = [UIColor alizarinColor];
-    note2.slot = 1;
-    [_allNotes addObject:note2];
-    
-    Note *note3 = [[Note alloc] init];
-    note3.text = @"this is my third note";
-    note3.color = [UIColor amethystColor];
-    note3.slot = 2;
-    [_allNotes addObject:note3];
-    
-    Note *note4 = [[Note alloc] init];
-    note4.text = @"this is my fourth note";
-    note4.color = [UIColor midnightBlueColor];
-    note4.slot = 3;
-    [_allNotes addObject:note4];
-    
-    Note *note5 = [[Note alloc] init];
-    note5.text = @"this is my fifth note";
-    note5.color = [UIColor alizarinColor];
-    note5.slot = 4;
-    [_allNotes addObject:note5];
-    
-    Note *note6 = [[Note alloc] init];
-    note6.text = @"this is my sixth note";
-    note6.color = [UIColor sunflowerColor];
-    note6.slot = 5;
-    [_allNotes addObject:note6];
-    
-    NSLog(@"temp data entered");
-    [self indexSortAllNotes];
+//	// Do any additional setup after loading the view.
+//    
+//    self.ListView.delegate = self;
+//    self.ListView.dataSource = self;
+//    
+//    _allNotes = [[NSMutableArray alloc] init];
+//    
+//    Note *note = [[Note alloc] init];
+//    note.text = @"this is my first note";
+//    note.color = [UIColor emerlandColor];
+//    note.slot = 0;
+//    NSUUID *uuid = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid UUIDString]);
+//    note.uuid = [uuid UUIDString];
+//    [_allNotes addObject:note];
+//    
+//    Note *note2 = [[Note alloc] init];
+//    note2.text = @"this is my second note";
+//    note2.color = [UIColor alizarinColor];
+//    note2.slot = 1;
+//    NSUUID *uuid2 = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid2 UUIDString]);
+//    note2.uuid = [uuid2 UUIDString];
+//    [_allNotes addObject:note2];
+//    
+//    Note *note3 = [[Note alloc] init];
+//    note3.text = @"this is my third note";
+//    note3.color = [UIColor amethystColor];
+//    note3.slot = 2;
+//    NSUUID *uuid3 = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid3 UUIDString]);
+//    note3.uuid = [uuid3 UUIDString];
+//    [_allNotes addObject:note3];
+//    
+//    Note *note4 = [[Note alloc] init];
+//    note4.text = @"this is my fourth note";
+//    note4.color = [UIColor midnightBlueColor];
+//    note4.slot = 3;
+//    NSUUID *uuid4 = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid4 UUIDString]);
+//    note4.uuid = [uuid4 UUIDString];
+//    [_allNotes addObject:note4];
+//    
+//    Note *note5 = [[Note alloc] init];
+//    note5.text = @"this is my fifth note";
+//    note5.color = [UIColor alizarinColor];
+//    note5.slot = 4;
+//    NSUUID *uuid5 = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid5 UUIDString]);
+//    note5.uuid = [uuid5 UUIDString];
+//    [_allNotes addObject:note5];
+//    
+//    Note *note6 = [[Note alloc] init];
+//    note6.text = @"this is my sixth note";
+//    note6.color = [UIColor sunflowerColor];
+//    note6.slot = 5;
+//    NSUUID *uuid6 = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid6 UUIDString]);
+//    note6.uuid = [uuid6 UUIDString];
+//    [_allNotes addObject:note6];
+//    
+//    NSLog(@"temp data entered");
+//    [self indexSortAllNotes];
     
 }
 
@@ -294,6 +316,7 @@
 //    [self.ListView reloadData];
     
 }
+
 
 
 #pragma mark - LXReorderableCollectionViewDataSource methods

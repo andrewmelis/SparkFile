@@ -38,6 +38,7 @@
 -(void)saveNoteToParse:(Note*)offNote
 {
     PFObject *note = [PFObject objectWithClassName:@"Note"];
+    [note setObject:offNote.uuid forKey:@"uniqueid"];
     [note setObject:offNote.text forKey:@"text"];
     [note setObject:[NSNumber numberWithInt:offNote.slot] forKey:@"slot"];
     
@@ -55,6 +56,11 @@
     [note setObject:[NSNumber numberWithBool:offNote.archived] forKey:@"archived"];
     
     [note saveInBackground];
+    
+//    offNote.uuid = note.objectId;
+//    NSLog(@"@%@",offNote.uuid);
+    
+    
 }
 
 

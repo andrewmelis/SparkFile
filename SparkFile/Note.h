@@ -12,6 +12,7 @@
 
 @interface Note : NSObject
 
+@property (strong, nonatomic) NSString *uuid;
 @property (strong, nonatomic) NSString *text;
 @property (assign, nonatomic) NSInteger slot;
 @property (strong, nonatomic) UIColor *color;
