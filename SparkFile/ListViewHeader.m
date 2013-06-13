@@ -26,6 +26,7 @@
     if(touch.view.tag == 100)    //cogs -- system settings
     {
         NSLog(@"testing tags -- settings button");
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root"]];
         
     } else if (touch.view.tag == 90)    //archive button
     {

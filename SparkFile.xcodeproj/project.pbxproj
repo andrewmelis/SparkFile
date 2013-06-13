@@ -16,7 +16,6 @@
 		2840AF6B1765A59E00203874 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2840AF6A1765A59E00203874 /* main.m */; };
 		2840AF6F1765A59E00203874 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2840AF6E1765A59E00203874 /* AppDelegate.m */; };
 		2840AF781765A59E00203874 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2840AF761765A59E00203874 /* MainStoryboard.storyboard */; };
-		2840AF7B1765A59E00203874 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2840AF7A1765A59E00203874 /* ViewController.m */; };
 		2840AF841765A61500203874 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF831765A61500203874 /* SystemConfiguration.framework */; };
 		2840AF861765A61C00203874 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF851765A61C00203874 /* StoreKit.framework */; };
 		2840AF881765A62100203874 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF871765A62100203874 /* Security.framework */; };
@@ -63,6 +62,7 @@
 		28A58A9D176A69FF0071AC6B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A58A9C176A69FF0071AC6B /* Default@2x.png */; };
 		28A58A9F176A6A020071AC6B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A58A9E176A6A020071AC6B /* Default.png */; };
 		28A58AA1176A6BFA0071AC6B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A58AA0176A6BFA0071AC6B /* Parse.framework */; };
+		28A58AA3176A73F20071AC6B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28A58AA2176A73F20071AC6B /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,8 +81,6 @@
 		2840AF6D1765A59E00203874 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2840AF6E1765A59E00203874 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2840AF771765A59E00203874 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		2840AF791765A59E00203874 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2840AF7A1765A59E00203874 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2840AF831765A61500203874 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2840AF851765A61C00203874 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2840AF871765A62100203874 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -149,6 +147,7 @@
 		28A58A9C176A69FF0071AC6B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		28A58A9E176A6A020071AC6B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		28A58AA0176A6BFA0071AC6B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		28A58AA2176A73F20071AC6B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,8 +241,6 @@
 				2805A6A21766F1C3000A9716 /* Collection View Element Classes */,
 				2840AF6D1765A59E00203874 /* AppDelegate.h */,
 				2840AF6E1765A59E00203874 /* AppDelegate.m */,
-				2840AF791765A59E00203874 /* ViewController.h */,
-				2840AF7A1765A59E00203874 /* ViewController.m */,
 				2847234A176629D800157935 /* ListViewController.h */,
 				2847234B176629D800157935 /* ListViewController.m */,
 				285496F417682CDE00C1E930 /* FontAwesome */,
@@ -260,6 +257,7 @@
 				28A58A98176A68E10071AC6B /* Icon.png */,
 				28A58A96176A68DD0071AC6B /* Icon@2x.png */,
 				2840AF661765A59E00203874 /* SparkFile-Info.plist */,
+				28A58AA2176A73F20071AC6B /* Settings.bundle */,
 				2840AF671765A59E00203874 /* InfoPlist.strings */,
 				2840AF6A1765A59E00203874 /* main.m */,
 				2840AF6C1765A59E00203874 /* SparkFile-Prefix.pch */,
@@ -430,6 +428,7 @@
 				28A58A9B176A691A0071AC6B /* Default-568h@2x.png in Resources */,
 				28A58A9D176A69FF0071AC6B /* Default@2x.png in Resources */,
 				28A58A9F176A6A020071AC6B /* Default.png in Resources */,
+				28A58AA3176A73F20071AC6B /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,7 +441,6 @@
 			files = (
 				2840AF6B1765A59E00203874 /* main.m in Sources */,
 				2840AF6F1765A59E00203874 /* AppDelegate.m in Sources */,
-				2840AF7B1765A59E00203874 /* ViewController.m in Sources */,
 				2840AF981765A6AC00203874 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				284723131766203600157935 /* FUIAlertView.m in Sources */,
 				284723141766203600157935 /* FUIButton.m in Sources */,

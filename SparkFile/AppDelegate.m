@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "UIColor+FlatUI.h"
+#import "FUIAlertView.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -44,6 +46,8 @@
     
     return YES;
 }
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -65,6 +69,46 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+ 
+    
+    
+    //connection checking method from http://stackoverflow.com/questions/7015644/ios-reachability-not-recognizing-when-host-is-removed/7016594#comment9733939_7016594
+    
+    NSError *error = nil;
+    NSStringEncoding encoding = 0;
+    NSURL *url = [[NSURL alloc] initWithString:@"http://www.google.com"];
+    NSString *connected = [[NSString alloc] initWithContentsOfURL:url
+                                                     usedEncoding:&encoding
+                                                            error:&error];
+    
+    wait(2500);
+    if (connected == NULL) {
+        
+        NSLog(@"Not Connected");
+        //Code to show if not connected
+        
+        FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"No Connection" message:@"Looks like you don't have an internet connection.\nSparkFile will do its best to save your work, but some data loss may occur." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil ];
+        alertView.titleLabel.textColor = [UIColor midnightBlueColor];
+        alertView.titleLabel.font = [UIFont boldFlatFontOfSize:20];
+        alertView.messageLabel.textColor = [UIColor midnightBlueColor];
+        alertView.messageLabel.font = [UIFont flatFontOfSize:18];
+        alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
+        alertView.alertContainer.backgroundColor = [UIColor cloudsColor];
+        alertView.defaultButtonColor = [UIColor alizarinColor];
+        alertView.defaultButtonShadowColor = [UIColor pomegranateColor];
+        
+        [alertView show];
+        
+        
+
+
+        
+        
+        
+    } else {
+        NSLog(@"Connected Successfully!");
+        //Any other code for successful connection
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
