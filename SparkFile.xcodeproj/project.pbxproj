@@ -15,12 +15,8 @@
 		2840AF691765A59E00203874 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2840AF671765A59E00203874 /* InfoPlist.strings */; };
 		2840AF6B1765A59E00203874 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2840AF6A1765A59E00203874 /* main.m */; };
 		2840AF6F1765A59E00203874 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2840AF6E1765A59E00203874 /* AppDelegate.m */; };
-		2840AF711765A59E00203874 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2840AF701765A59E00203874 /* Default.png */; };
-		2840AF731765A59E00203874 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2840AF721765A59E00203874 /* Default@2x.png */; };
-		2840AF751765A59E00203874 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2840AF741765A59E00203874 /* Default-568h@2x.png */; };
 		2840AF781765A59E00203874 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2840AF761765A59E00203874 /* MainStoryboard.storyboard */; };
 		2840AF7B1765A59E00203874 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2840AF7A1765A59E00203874 /* ViewController.m */; };
-		2840AF821765A5DA00203874 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF811765A5DA00203874 /* Parse.framework */; };
 		2840AF841765A61500203874 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF831765A61500203874 /* SystemConfiguration.framework */; };
 		2840AF861765A61C00203874 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF851765A61C00203874 /* StoreKit.framework */; };
 		2840AF881765A62100203874 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF871765A62100203874 /* Security.framework */; };
@@ -61,6 +57,12 @@
 		285496F017682BB300C1E930 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 285496EF17682BB300C1E930 /* FontAwesome.ttf */; };
 		285496F317682CC700C1E930 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496F217682CC700C1E930 /* NSString+FontAwesome.m */; };
 		285496F717686EB400C1E930 /* ListViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 285496F617686EB400C1E930 /* ListViewHeader.m */; };
+		28A58A97176A68DD0071AC6B /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A58A96176A68DD0071AC6B /* Icon@2x.png */; };
+		28A58A99176A68E10071AC6B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A58A98176A68E10071AC6B /* Icon.png */; };
+		28A58A9B176A691A0071AC6B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A58A9A176A691A0071AC6B /* Default-568h@2x.png */; };
+		28A58A9D176A69FF0071AC6B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A58A9C176A69FF0071AC6B /* Default@2x.png */; };
+		28A58A9F176A6A020071AC6B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A58A9E176A6A020071AC6B /* Default.png */; };
+		28A58AA1176A6BFA0071AC6B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A58AA0176A6BFA0071AC6B /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,13 +80,9 @@
 		2840AF6C1765A59E00203874 /* SparkFile-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SparkFile-Prefix.pch"; sourceTree = "<group>"; };
 		2840AF6D1765A59E00203874 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2840AF6E1765A59E00203874 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2840AF701765A59E00203874 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		2840AF721765A59E00203874 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		2840AF741765A59E00203874 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2840AF771765A59E00203874 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		2840AF791765A59E00203874 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2840AF7A1765A59E00203874 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		2840AF811765A5DA00203874 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		2840AF831765A61500203874 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2840AF851765A61C00203874 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		2840AF871765A62100203874 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -145,6 +143,12 @@
 		285496F217682CC700C1E930 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
 		285496F517686EB400C1E930 /* ListViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewHeader.h; sourceTree = "<group>"; };
 		285496F617686EB400C1E930 /* ListViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewHeader.m; sourceTree = "<group>"; };
+		28A58A96176A68DD0071AC6B /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		28A58A98176A68E10071AC6B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		28A58A9A176A691A0071AC6B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		28A58A9C176A69FF0071AC6B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		28A58A9E176A6A020071AC6B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		28A58AA0176A6BFA0071AC6B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +169,7 @@
 				2840AF841765A61500203874 /* SystemConfiguration.framework in Frameworks */,
 				2840AF5F1765A59E00203874 /* UIKit.framework in Frameworks */,
 				2840AF611765A59E00203874 /* Foundation.framework in Frameworks */,
-				2840AF821765A5DA00203874 /* Parse.framework in Frameworks */,
+				28A58AA1176A6BFA0071AC6B /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +216,7 @@
 		2840AF5D1765A59E00203874 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28A58AA0176A6BFA0071AC6B /* Parse.framework */,
 				284723481766227100157935 /* CoreText.framework */,
 				2840AF931765A65300203874 /* AudioToolbox.framework */,
 				2840AF911765A64C00203874 /* CFNetwork.framework */,
@@ -222,7 +227,6 @@
 				2840AF871765A62100203874 /* Security.framework */,
 				2840AF851765A61C00203874 /* StoreKit.framework */,
 				2840AF831765A61500203874 /* SystemConfiguration.framework */,
-				2840AF811765A5DA00203874 /* Parse.framework */,
 				2840AF5E1765A59E00203874 /* UIKit.framework */,
 				2840AF601765A59E00203874 /* Foundation.framework */,
 				2840AF621765A59E00203874 /* CoreGraphics.framework */,
@@ -253,13 +257,15 @@
 		2840AF651765A59E00203874 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				28A58A98176A68E10071AC6B /* Icon.png */,
+				28A58A96176A68DD0071AC6B /* Icon@2x.png */,
 				2840AF661765A59E00203874 /* SparkFile-Info.plist */,
 				2840AF671765A59E00203874 /* InfoPlist.strings */,
 				2840AF6A1765A59E00203874 /* main.m */,
 				2840AF6C1765A59E00203874 /* SparkFile-Prefix.pch */,
-				2840AF701765A59E00203874 /* Default.png */,
-				2840AF721765A59E00203874 /* Default@2x.png */,
-				2840AF741765A59E00203874 /* Default-568h@2x.png */,
+				28A58A9E176A6A020071AC6B /* Default.png */,
+				28A58A9C176A69FF0071AC6B /* Default@2x.png */,
+				28A58A9A176A691A0071AC6B /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -407,9 +413,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2840AF691765A59E00203874 /* InfoPlist.strings in Resources */,
-				2840AF711765A59E00203874 /* Default.png in Resources */,
-				2840AF731765A59E00203874 /* Default@2x.png in Resources */,
-				2840AF751765A59E00203874 /* Default-568h@2x.png in Resources */,
 				2840AF781765A59E00203874 /* MainStoryboard.storyboard in Resources */,
 				2847233B1766203600157935 /* Lato-Black.ttf in Resources */,
 				2847233C1766203600157935 /* Lato-BlackItalic.ttf in Resources */,
@@ -422,6 +425,11 @@
 				284723431766203600157935 /* Lato-LightItalic.ttf in Resources */,
 				284723441766203600157935 /* Lato-Regular.ttf in Resources */,
 				285496F017682BB300C1E930 /* FontAwesome.ttf in Resources */,
+				28A58A97176A68DD0071AC6B /* Icon@2x.png in Resources */,
+				28A58A99176A68E10071AC6B /* Icon.png in Resources */,
+				28A58A9B176A691A0071AC6B /* Default-568h@2x.png in Resources */,
+				28A58A9D176A69FF0071AC6B /* Default@2x.png in Resources */,
+				28A58A9F176A6A020071AC6B /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +551,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../SweetStache copy\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SparkFile/SparkFile-Prefix.pch";
@@ -558,6 +567,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../SweetStache copy\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SparkFile/SparkFile-Prefix.pch";
