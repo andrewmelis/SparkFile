@@ -32,63 +32,59 @@
     
 //    NSArray *temp;
 //    [PFObject fetchAll:temp];
-//    _allNotes = [temp mutableCopy];
+//    _showNotes = [temp mutableCopy];
     
-	// Do any additional setup after loading the view.
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow) name:UIKeyboardDidShowNotification object:nil];
     
     self.ListView.delegate = self;
     self.ListView.dataSource = self;
     
-    _allNotes = [[NSMutableArray alloc] init];
-    _archivedNotes = [[NSMutableArray alloc] init];
+    _showNotes = [[NSMutableArray alloc] init];
     _masterNotes = [[NSMutableArray alloc] init];
     
-//    Note *note = [[Note alloc] init];
-//    note.text = @"one billion dollars";
-//    note.color = [UIColor emerlandColor];
-//    note.slot = 5;
-//    NSUUID *uuid = [NSUUID UUID];
-//    NSLog(@"UUID: %@", [uuid UUIDString]);
-//    note.uuid = [uuid UUIDString];
-//    [_allNotes addObject:note];
-//    
-//    Note *note2 = [[Note alloc] init];
-//    note2.text = @"so much money";
-//    note2.color = [UIColor sunflowerColor];
-//    note2.slot = 4;
-//    NSUUID *uuid2 = [NSUUID UUID];
-//    NSLog(@"UUID: %@", [uuid2 UUIDString]);
-//    note2.uuid = [uuid2 UUIDString];
-//    [_allNotes addObject:note2];
-//    
-//    Note *note3 = [[Note alloc] init];
-//    note3.text = @"this is my third smart thing";
-//    note3.color = [UIColor amethystColor];
-//    note3.slot = 3;
-//    NSUUID *uuid3 = [NSUUID UUID];
-//    NSLog(@"UUID: %@", [uuid3 UUIDString]);
-//    note3.uuid = [uuid3 UUIDString];
-//    [_allNotes addObject:note3];
-//    
-//    Note *note4 = [[Note alloc] init];
-//    note4.text = @"this is my fourth facebook-level game changer";
-//    note4.color = [UIColor midnightBlueColor];
-//    note4.slot = 2;
-//    NSUUID *uuid4 = [NSUUID UUID];
-//    NSLog(@"UUID: %@", [uuid4 UUIDString]);
-//    note4.uuid = [uuid4 UUIDString];
-//    [_allNotes addObject:note4];
-//    
-//    Note *note5 = [[Note alloc] init];
-//    note5.text = @"this is my fifth idea";
-//    note5.color = [UIColor alizarinColor];
-//    note5.slot = 1;
-//    NSUUID *uuid5 = [NSUUID UUID];
-//    NSLog(@"UUID: %@", [uuid5 UUIDString]);
-//    note5.uuid = [uuid5 UUIDString];
-//    [_allNotes addObject:note5];
+    Note *note = [[Note alloc] init];
+    note.text = @"one billion dollars";
+    note.color = [UIColor emerlandColor];
+    note.slot = 5;
+    NSUUID *uuid = [NSUUID UUID];
+    NSLog(@"UUID: %@", [uuid UUIDString]);
+    note.uuid = [uuid UUIDString];
+    [_showNotes addObject:note];
+    
+    Note *note2 = [[Note alloc] init];
+    note2.text = @"so much money";
+    note2.color = [UIColor sunflowerColor];
+    note2.slot = 4;
+    NSUUID *uuid2 = [NSUUID UUID];
+    NSLog(@"UUID: %@", [uuid2 UUIDString]);
+    note2.uuid = [uuid2 UUIDString];
+    [_showNotes addObject:note2];
+    
+    Note *note3 = [[Note alloc] init];
+    note3.text = @"this is my third smart thing";
+    note3.color = [UIColor amethystColor];
+    note3.slot = 3;
+    NSUUID *uuid3 = [NSUUID UUID];
+    NSLog(@"UUID: %@", [uuid3 UUIDString]);
+    note3.uuid = [uuid3 UUIDString];
+    [_showNotes addObject:note3];
+    
+    Note *note4 = [[Note alloc] init];
+    note4.text = @"this is my fourth facebook-level game changer";
+    note4.color = [UIColor midnightBlueColor];
+    note4.slot = 2;
+    NSUUID *uuid4 = [NSUUID UUID];
+    NSLog(@"UUID: %@", [uuid4 UUIDString]);
+    note4.uuid = [uuid4 UUIDString];
+    [_showNotes addObject:note4];
+    
+    Note *note5 = [[Note alloc] init];
+    note5.text = @"this is my fifth idea";
+    note5.color = [UIColor alizarinColor];
+    note5.slot = 1;
+    NSUUID *uuid5 = [NSUUID UUID];
+    NSLog(@"UUID: %@", [uuid5 UUIDString]);
+    note5.uuid = [uuid5 UUIDString];
+    [_showNotes addObject:note5];
     
     Note *note6 = [[Note alloc] init];
     note6.text = @"this is my sixth thought";
@@ -97,41 +93,29 @@
     NSUUID *uuid6 = [NSUUID UUID];
     NSLog(@"UUID: %@", [uuid6 UUIDString]);
     note6.uuid = [uuid6 UUIDString];
-    [_allNotes addObject:note6];
+    [_showNotes addObject:note6];
     
     NSLog(@"temp data entered");
     [self indexSortAllNotes];
-    _masterNotes = [_allNotes mutableCopy];         //todo fix this
+    _masterNotes = [_showNotes mutableCopy];         //todo fix this
     
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-//    [self scrollToBottom];
-}
+//TODO need viewDidAppear?
 
 
-//PARSE METHODS
--(void)saveAllNotesToParse
-{
-    
-}
-//{
-//    for (Note* note in _allNotes) {
-//        NSLog(@"%@",note.text);
-//        [note saveNoteToParse:note];
-//    }
-//}
+#pragma mark - collectionview delegate methods
 
+//cell
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier_solo    = @"NoteCell";
 
     NoteCell *cell;
     
-    if ([_allNotes objectAtIndex:indexPath.item]) {         //if there's an object at index
+    if ([_showNotes objectAtIndex:indexPath.item]) {         //if there's an object at index
         
-        Note *note = [_allNotes objectAtIndex:indexPath.item];      //get that note
+        Note *note = [_showNotes objectAtIndex:indexPath.item];      //get that note
     
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier_solo forIndexPath:indexPath];
         cell.note = note;
@@ -151,8 +135,7 @@
         } else {
             cell.archiveIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconSignBlank];
         }
-        
-    
+
         cell.colorChooserIcon.backgroundColor = note.color;
         cell.colorChooserIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:26];
         cell.colorChooserIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconAdjust];
@@ -169,6 +152,7 @@
     
 }
 
+//header & footer
 -(UICollectionReusableView*)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -216,27 +200,15 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    if (_allNotes != NULL) {
-        return _allNotes.count;
+    if (_showNotes != NULL) {
+        return _showNotes.count;
     }
     else return 0;  //TODO check this later
 
 }
 
 
-//-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    NSLog(@"selected cell at @%d",indexPath.item);
-//    [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];      //really want to open modal view with cell and keyboard
-//    [self.ListView deselectItemAtIndexPath:indexPath animated:YES];
-//}
-
--(BOOL)keyBoardDidShow
-{
-    return YES;
-}
-
-
+#pragma mark - alertview colorpicker
 //changes button color from alertview in notecell
 -(void)alertView:(FUIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -247,70 +219,109 @@
     [self.ListView reloadData];
 }
 
+#pragma mark - swap which list is on screen
+//if archivedRequest == true, then gets all archived notes
+//if archivedRequest == false, then gets all non-archived notes
+-(void)swapLists:(BOOL)archivedRequest {
+    //sync previous shownotes with master list
+    [self syncNotesListWithMasterNotesList:_showNotes];
+    
+    //clear shownotes
+    [_showNotes removeAllObjects];
+    //then replace list
+    for (int i = 0; i<_masterNotes.count; i++) {
+        Note *note = [_masterNotes objectAtIndex:i];
+        if(note.archived == archivedRequest) {
+            [_showNotes addObject:note];
+        }
+    }
+    [self.ListView reloadData];
+}
 
 
-//sorts all notes by color, as defined by user?
+#pragma mark - sorting, ie first and second options
+//sorts all notes by color, --TODO in future, allow user to set color preferences
 -(void)colorSortAllNotes {
     NSArray *sortedNotes;
-    sortedNotes = [_allNotes sortedArrayUsingSelector:@selector(colorCompare:)];
-    _allNotes = sortedNotes.mutableCopy;
+    sortedNotes = [_showNotes sortedArrayUsingSelector:@selector(colorCompare:)];
+    _showNotes = sortedNotes.mutableCopy;
     [self.ListView reloadData];
 }
 
 //sorts all the notes by slot index
 -(void)indexSortAllNotes {
     NSArray *sortedNotes;
-    sortedNotes = [_allNotes sortedArrayUsingSelector:@selector(indexCompare:)];
-    _allNotes = sortedNotes.mutableCopy;
+    sortedNotes = [_showNotes sortedArrayUsingSelector:@selector(indexCompare:)];
+    _showNotes = sortedNotes.mutableCopy;
     [self.ListView reloadData];
 }
 
-//updates persistent slot index of each note, for proper "date" / dragged sorting
+#pragma mark - list management helpers
+//updates persistent slot index of each note, for proper "date" / dragged sorting (middle option)
 -(void)updateAllNotesSlotNumbers {
-    for (int i = 0; i<_allNotes.count; i++) {
-        Note *note = [_allNotes objectAtIndex:i];
+    for (int i = 0; i<_showNotes.count; i++) {
+        Note *note = [_showNotes objectAtIndex:i];
         note.slot = i;
-        [_allNotes replaceObjectAtIndex:i withObject:note];
-        _masterNotes = [_allNotes mutableCopy];
-//        [note saveNoteToParse:note];
+        [_showNotes replaceObjectAtIndex:i withObject:note];
     }
-//    [PFObject saveAll:_allNotes];
-//     saveAllNotesToParse];
+    [self syncNotesListWithMasterNotesList:_showNotes];
 }
 
-//updates allnotes to only include archived notes
--(void)getAllArchived {
-    //get all notes from web
-    NSMutableArray *archivedNotes = [[NSMutableArray alloc] init];
-    for (int i = 0; i<_masterNotes.count; i++) {
-        Note *note = [_masterNotes objectAtIndex:i];
-        if(note.archived) {
-            [archivedNotes addObject:note];
-        }
+//update master list to reflect current state of viewed notes
+-(void)syncNotesListWithMasterNotesList:(NSMutableArray*)notesList
+{
+    for(int i = 0; i<notesList.count; i++) {
+        Note *curNote = [notesList objectAtIndex:i];
+        [_masterNotes removeObjectIdenticalTo:curNote];    //remove each identical object (compare UUIDs) -- does nothing if no copy in master notes
+        [_masterNotes addObject:curNote];                   //add updated/new object to master list
+        
     }
-    _archivedNotes = [archivedNotes mutableCopy];
-    [self.ListView reloadData];
+    //sync master notes with web
+}
+
+
+#pragma mark - view management helpers
+//adds temporary length to scrollview so that cells at bottom of screen can be seen above keyboard
+-(void) addInsets
+{
+    CGSize kbSize = CGSizeMake(320, 216);
     
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.ListView.contentInset = contentInsets;
+    self.ListView.scrollIndicatorInsets = contentInsets;
 }
 
-//updates allnotes to only include non-archived notes
--(void)getAllNonArchived {
-    //get all notes from web
-    NSMutableArray *nonArchivedNotes = [[NSMutableArray alloc] init];
-    for (int i = 0; i<_masterNotes.count; i++) {
-        Note *note = [_masterNotes objectAtIndex:i];
-        if(!note.archived) {
-            [nonArchivedNotes addObject:note];
-        }
+//removes said temporary scrollview length
+-(void)removeInsets
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.ListView.contentInset = contentInsets;
+    self.ListView.scrollIndicatorInsets = contentInsets;
+}
+
+//scrolls list back to proper point when keyboard is closed
+-(void) scrollToBottom:(NSIndexPath*)indexPath
+{
+    CGPoint bottom;
+    if (indexPath.item == 1 && _showNotes.count==2) {        //special case where only two cells and select second cell
+        bottom = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height + 170);
+    } else {
+        bottom = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height);
     }
-    _allNotes = [nonArchivedNotes mutableCopy];
-    [self.ListView reloadData];
+    [self.ListView setContentOffset:bottom animated:YES];
 }
 
--(void)archiveNote:(Note*)note {
-    //sync note with web
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [textView becomeFirstResponder];
+    return YES;
+}
 
-    [_allNotes removeObject:note];
+#pragma mark note helpers
+//TODO
+-(void)archiveNote:(Note*)note {
+
+    [_showNotes removeObject:note];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:note.slot inSection:0];
 //    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:note.slot];
     NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
@@ -321,7 +332,7 @@
         [self.ListView deleteItemsAtIndexPaths:indexPaths];
     }
     
-    NSLog(@"remaining items in collection view: @%i", _allNotes.count);
+    NSLog(@"remaining items in collection view: @%i", _showNotes.count);
     
     [self updateAllNotesSlotNumbers];
     
@@ -336,13 +347,12 @@
     NSLog(@"UUID: %@", [uuid UUIDString]);
     note.uuid = [uuid UUIDString];
     
-    [_allNotes insertObject:note atIndex:0];
+    [_showNotes insertObject:note atIndex:0];
     [self updateAllNotesSlotNumbers];
     NSIndexPath *indexPath;
-    if (_allNotes.count == 1) {
+    if (_showNotes.count == 1) {
         [self.ListView reloadData];
-        indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
-//                                  //avoid error noted here: http://stackoverflow.com/questions/12611292/uicollectionview-assertion-failure
+        indexPath = [NSIndexPath indexPathForItem:0 inSection:0]; //avoid error noted here: http://stackoverflow.com/questions/12611292/uicollectionview-assertion-failure
     } else {
         indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
         NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
@@ -353,41 +363,8 @@
 }
 
 
--(BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    [textView becomeFirstResponder];
-    return YES;
-}
-
--(void) addInsets
-{
-    CGSize kbSize = CGSizeMake(320, 216);
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    self.ListView.contentInset = contentInsets;
-    self.ListView.scrollIndicatorInsets = contentInsets;
-}
-
--(void) scrollToBottom:(NSIndexPath*)indexPath
-{
-    CGPoint bottom;
-    if (indexPath.item == 1 && _allNotes.count==2) {        //special case where only two cells and select second cell
-        bottom = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height + 170);
-    } else {
-        bottom = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height);
-    }
-    [self.ListView setContentOffset:bottom animated:YES];
-}
-
--(void)removeInsets
-{
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.ListView.contentInset = contentInsets;
-    self.ListView.scrollIndicatorInsets = contentInsets;
-}
-
 -(void)readyCellsForEditing:(UICollectionReusableView*)tappedElement curTapIsEdit:(BOOL)curTap {
-    for (int i = 0; i<self.allNotes.count; i++) {
+    for (int i = 0; i<_showNotes.count; i++) {
         NSLog(@"Tapped element type @%@",tappedElement.class);          //why is this being called so many times?
         NSIndexPath *path= [NSIndexPath indexPathForItem:i inSection:0];
         NoteCell *current = (NoteCell*)[self.ListView cellForItemAtIndexPath:path];
@@ -405,10 +382,11 @@
 //            [current flipEditingState];
 //            NSIndexPath *currentIndexPath = [self.ListView indexPathForCell:current];
 //            
-//            [self endEdit:current shouldScroll:(currentIndexPath.item >0 && _allNotes.count>1 && _allNotes.count - currentIndexPath.item <=3) indexPath:currentIndexPath];
+//            [self endEdit:current shouldScroll:(currentIndexPath.item >0 && _showNotes.count>1 && _showNotes.count - currentIndexPath.item <=3) indexPath:currentIndexPath];
         }//if it's not editable, don't need any teardown
     }
 }
+
 
 -(void)editNoteCell:(NoteCell*)noteCell
 {
@@ -423,7 +401,7 @@
     
     NSIndexPath *indexPath = [self.ListView indexPathForCell:noteCell];
     
-    BOOL shouldScroll = (indexPath.item >0 && _allNotes.count>1 && _allNotes.count - indexPath.item <=3);
+    BOOL shouldScroll = (indexPath.item >0 && _showNotes.count>1 && _showNotes.count - indexPath.item <=3);
     
 
     if(noteCell.noteText.editable) {
@@ -466,9 +444,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath {
     
-    Note *note = [_allNotes objectAtIndex:fromIndexPath.item];
-    [_allNotes removeObjectAtIndex:fromIndexPath.item];
-    [_allNotes insertObject:note atIndex:toIndexPath.item];
+    Note *note = [_showNotes objectAtIndex:fromIndexPath.item];
+    [_showNotes removeObjectAtIndex:fromIndexPath.item];
+    [_showNotes insertObject:note atIndex:toIndexPath.item];
     //TODO update all indices
 }
 
@@ -496,7 +474,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout didEndDraggingItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self updateAllNotesSlotNumbers];   //update the slots for sorting later
+    [self updateAllNotesSlotNumbers];   //update the slots for sorting when an item is dragged to new slot
     NSLog(@"did end drag");
 }
 

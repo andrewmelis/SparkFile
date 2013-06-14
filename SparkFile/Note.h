@@ -20,6 +20,7 @@
 
 - (NSComparisonResult)colorCompare:(Note *)otherObject;
 - (NSComparisonResult)indexCompare:(Note *)otherObject;
+-(BOOL)isEqual:(id)object;
 
 -(void)saveNoteToParse:(Note*)offNote;
 

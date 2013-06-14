@@ -34,8 +34,20 @@
     
 }
 
+//compare by UUID
+-(BOOL)isEqual:(id)object
+{
+    if([object isKindOfClass:self.class]) {
+        Note *other = object;
+        if([self.uuid isEqualToString:other.uuid]) {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
 
--(void)saveNoteToParse:(Note*)offNote
+
+-(void)saveNoteToParse:(Note*)offNote;
 {
     PFObject *note = [PFObject objectWithClassName:@"Note"];
     [note setObject:offNote.uuid forKey:@"uniqueid"];
