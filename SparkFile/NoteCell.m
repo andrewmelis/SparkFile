@@ -50,7 +50,7 @@
     } else if(touch.view.tag == 10)    //color picker
     {
         [self flipEditingState];
-        [self showColorPicker];
+        [AlertViewHelper showColorPicker:self.parentViewController note:self.note];
         
     } else if (touch.view.tag == 30)    //edit button
     {
@@ -91,32 +91,7 @@
     self.note.text = self.noteText.text;
 }
 
--(void)showColorPicker
-{
-    //show color picker
-    FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Color-Code" message:@"Choose a color for this note:" delegate:self.parentViewController cancelButtonTitle:@"" otherButtonTitles:@"", @"",@"",@"",@"", nil ];
-    alertView.titleLabel.textColor = [UIColor midnightBlueColor];
-    alertView.titleLabel.font = [UIFont boldFlatFontOfSize:20];
-    alertView.messageLabel.textColor = [UIColor midnightBlueColor];
-    alertView.messageLabel.font = [UIFont flatFontOfSize:18];
-    alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
-    alertView.alertContainer.backgroundColor = [UIColor cloudsColor];
-    alertView.defaultButtonColor = [UIColor cloudsColor];
-    alertView.defaultButtonShadowColor = [UIColor asbestosColor];
-    
-    [alertView setButtonColorsAtIndex:0 color:[UIColor alizarinColor] shadowColor:[UIColor pomegranateColor]];
-    [alertView setButtonColorsAtIndex:1 color:[UIColor sunflowerColor] shadowColor:[UIColor colorFromHexCode:@"f39c12"]];
-    [alertView setButtonColorsAtIndex:2 color:[UIColor emerlandColor] shadowColor:[UIColor nephritisColor]];
-    [alertView setButtonColorsAtIndex:3 color:[UIColor peterRiverColor] shadowColor:[UIColor belizeHoleColor]];
-    [alertView setButtonColorsAtIndex:4 color:[UIColor amethystColor] shadowColor:[UIColor wisteriaColor]];
-    [alertView setButtonColorsAtIndex:5 color:[UIColor wetAsphaltColor] shadowColor:[UIColor midnightBlueColor]];
-    
-    NSLog(@"why is note null? @%@",self.note);
-    alertView.note = self.note;
-    alertView.tag = 44;
-    [alertView show];
-    
-}
+
 
 
 @end

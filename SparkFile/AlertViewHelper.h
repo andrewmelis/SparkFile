@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FlatUIKit.h"
 #import "NSString+FontAwesome.h"
+#import "Note.h"
 
 @interface AlertViewHelper : NSObject
 
@@ -16,6 +17,8 @@
 +(void)showCredits:(UIViewController*)delegate;
 +(void)clearData:(UIViewController*)delegate;
 +(void)showHelp:(UICollectionViewController*)delegate;
++(void)showColorPicker:(UICollectionViewController*)delegate note:(Note*)note;
+
 
 
 @end

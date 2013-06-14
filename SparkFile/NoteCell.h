@@ -23,7 +23,6 @@
 
 -(void)moveSelfToArchive;
 -(void)flipEditingState;
--(void)showColorPicker;
 
 
 @end

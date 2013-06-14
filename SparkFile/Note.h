@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "FlatUIKit.h"
-#import <Parse/Parse.h>
 
 @interface Note : NSObject <NSCoding>
 

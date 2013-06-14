@@ -37,6 +37,8 @@
 //-(NSInteger) buttonPressedGetIndex:(FUIButton*)sender;
 @property (strong, nonatomic) Note *note;
 
+
+
 @property(nonatomic,readonly) NSInteger numberOfButtons;
 @property(nonatomic) NSInteger cancelButtonIndex;      // if the delegate does not implement -alertViewCancel:, we pretend this button was clicked on. default is -1
 

@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <Parse/Parse.h>
 #import "UIColor+FlatUI.h"
 #import "FUIAlertView.h"
 

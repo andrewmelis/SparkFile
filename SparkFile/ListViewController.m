@@ -418,9 +418,10 @@
         NSIndexPath *path= [NSIndexPath indexPathForItem:i inSection:0];
         NoteCell *current = (NoteCell*)[self.ListView cellForItemAtIndexPath:path];
         
-        if (tappedElement.class == [ListViewHeader class]) {            //if tapped header, close up note as normal, then do what header says
-            [current flipEditingState];
-//            [self editNoteCell:current];
+        if (tappedElement.class == [ListViewHeader class]) {            //if tapped header, close up note as
+            if( i!=0) {                                                               //normal, then do what header says
+                [current flipEditingState];
+            }
         } else if(tappedElement == current) {                           //if tapped same cell, save (even if redundant) and do whatever told
             current.note.text = current.noteText.text;
         } else if (curTap) {
