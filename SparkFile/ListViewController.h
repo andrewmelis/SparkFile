@@ -16,8 +16,9 @@
 
 @interface ListViewController : UICollectionViewController <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout, FUIAlertViewDelegate, UITextViewDelegate>
 
+@property (strong, nonatomic) NSMutableArray *archivedNotes;
 @property (strong, nonatomic) NSMutableArray *allNotes;
-@property (strong, nonatomic) NSMutableArray *masterNotes;  //nothing ever removed, syncs with web
+@property (strong, nonatomic) NSMutableArray *masterNotes;  //list synced with web
 @property (strong, nonatomic) IBOutlet UICollectionView *ListView;
 @property (nonatomic) IBOutlet ListViewHeader *header;
 

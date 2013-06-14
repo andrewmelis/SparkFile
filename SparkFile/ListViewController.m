@@ -42,6 +42,8 @@
     self.ListView.dataSource = self;
     
     _allNotes = [[NSMutableArray alloc] init];
+    _archivedNotes = [[NSMutableArray alloc] init];
+    _masterNotes = [[NSMutableArray alloc] init];
     
 //    Note *note = [[Note alloc] init];
 //    note.text = @"one billion dollars";
@@ -99,7 +101,7 @@
     
     NSLog(@"temp data entered");
     [self indexSortAllNotes];
-    _masterNotes = _allNotes;
+    _masterNotes = [_allNotes mutableCopy];         //todo fix this
     
 }
 
@@ -286,7 +288,7 @@
             [archivedNotes addObject:note];
         }
     }
-    _allNotes = [archivedNotes mutableCopy];
+    _archivedNotes = [archivedNotes mutableCopy];
     [self.ListView reloadData];
     
 }
@@ -319,7 +321,7 @@
         [self.ListView deleteItemsAtIndexPaths:indexPaths];
     }
     
-    NSLog(@"remaining items in collection view: @% ", _allNotes.count);
+    NSLog(@"remaining items in collection view: @%i", _allNotes.count);
     
     [self updateAllNotesSlotNumbers];
     
@@ -336,12 +338,16 @@
     
     [_allNotes insertObject:note atIndex:0];
     [self updateAllNotesSlotNumbers];
-//    if (_allNotes.count == 1) {
+    NSIndexPath *indexPath;
+    if (_allNotes.count == 1) {
+        [self.ListView reloadData];
+        indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 //                                  //avoid error noted here: http://stackoverflow.com/questions/12611292/uicollectionview-assertion-failure
-//    }
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
-    NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
-    [self.ListView insertItemsAtIndexPaths:indexPaths];
+    } else {
+        indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+        NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+        [self.ListView insertItemsAtIndexPaths:indexPaths];
+    }
     NoteCell *newCell = (NoteCell*)[self.ListView cellForItemAtIndexPath:indexPath];
     [self editNoteCell: newCell];
 }
@@ -382,7 +388,7 @@
 
 -(void)readyCellsForEditing:(UICollectionReusableView*)tappedElement curTapIsEdit:(BOOL)curTap {
     for (int i = 0; i<self.allNotes.count; i++) {
-        NSLog(@"Tapped element type @%@",tappedElement.class);
+        NSLog(@"Tapped element type @%@",tappedElement.class);          //why is this being called so many times?
         NSIndexPath *path= [NSIndexPath indexPathForItem:i inSection:0];
         NoteCell *current = (NoteCell*)[self.ListView cellForItemAtIndexPath:path];
         
@@ -394,6 +400,7 @@
         } else if (curTap) {
             [current flipEditingState];
         } else if (current.noteText.editable) {                            //otherwise it's a different cell, if editable, save up, close down without animation
+//        } else {
             [self editNoteCell:current];
 //            [current flipEditingState];
 //            NSIndexPath *currentIndexPath = [self.ListView indexPathForCell:current];
