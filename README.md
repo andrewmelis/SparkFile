@@ -12,10 +12,10 @@ Color-code to match potential combinations.
 spark, file, sparkfile, log, ideas, thoughts, coding, color
 
 ###Screenshots
-![Alt text](https://www.github.com/andrewmelis/sparkfile/raw/screenshots/main.png)
-![Alt text](https://www.github.com/andrewmelis/sparkfile/raw/screenshots/typing.png)
-![Alt text](https://www.github.com/andrewmelis/sparkfile/raw/screenshots/colors.png)
-![Alt text](https://www.github.com/andrewmelis/sparkfile/raw/screenshots/settings.png)
+![Alt text](https://raw.github.com/andrewmelis/SparkFile/master/SparkFile/Screenshots/main.png)
+![Alt text](https://raw.github.com/andrewmelis/SparkFile/master/SparkFile/Screenshots/typing.png)
+![Alt text](https://raw.github.com/andrewmelis/SparkFile/master/SparkFile/Screenshots/colors.png)
+![Alt text](https://raw.github.com/andrewmelis/SparkFile/master/SparkFile/Screenshots/settings.png)
 
 ###Executive Summary
 
