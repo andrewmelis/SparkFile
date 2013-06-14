@@ -28,8 +28,18 @@
 {
     UITouch *touch = [touches anyObject];
     
+    //from http://stackoverflow.com/questions/1823317/get-the-current-first-responder-without-using-a-private-api
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+
+    BOOL curTap = NO;
+    if (touch.view.tag == 30) {
+        curTap = YES;
+    }
+    [self.parentViewController readyCellsForEditing:self curTapIsEdit:curTap];
+    
     if(touch.view.tag == 10)    //cogs -- color picker
     {
+        [self flipEditingState];
         [self showColorPicker];
 
     } else if (touch.view.tag == 20)    //archive button
@@ -37,19 +47,19 @@
         //move to archive
         NSLog(@"test archive tag + %d",self.note.archived);
         
+        [self flipEditingState];
         [self moveSelfToArchive];
     
     }
         else if (touch.view.tag == 30)
     {
         //open edit modal
-        NSLog(@"testing tags -- edit button");
+        NSLog(@"testing tags -- edit button, going to state: @%i", !self.noteText.editable);
         
         [self.parentViewController editNoteCell:self];
+//    } else if (touches.class == self.class) {
+//    } else {
         
-        
-        
-
     }
 
 }
@@ -70,6 +80,20 @@
 }
 
 
+
+//-(void)turnOffEditing:(NoteCell*)current
+-(void)flipEditingState
+{
+    //flip booleans
+    self.noteText.userInteractionEnabled = NO;
+    self.noteText.editable = NO;
+    if (self.noteText.editable) {
+        self.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEditSign];
+    } else {
+        self.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEdit];
+    }
+    self.note.text = self.noteText.text;
+}
 
 -(void)showColorPicker
 {
@@ -96,7 +120,6 @@
     [alertView show];
     
 }
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -23,7 +23,10 @@
 {
     UITouch *touch = [touches anyObject];
     
-    if(touch.view.tag == 100)    //cogs -- system settings
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+    [self.parentViewController readyCellsForEditing:self curTapIsEdit:NO];
+    
+    if(touch.view.tag == 100)    //cog -- system settings
     {
         NSLog(@"testing tags -- settings button");
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root"]];

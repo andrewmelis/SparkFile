@@ -29,61 +29,64 @@
     
     
     [super viewDidLoad];
+    
 //    NSArray *temp;
 //    [PFObject fetchAll:temp];
 //    _allNotes = [temp mutableCopy];
     
 	// Do any additional setup after loading the view.
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow) name:UIKeyboardDidShowNotification object:nil];
+    
     self.ListView.delegate = self;
     self.ListView.dataSource = self;
     
     _allNotes = [[NSMutableArray alloc] init];
     
-    Note *note = [[Note alloc] init];
-    note.text = @"one billion dollars";
-    note.color = [UIColor emerlandColor];
-    note.slot = 5;
-    NSUUID *uuid = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid UUIDString]);
-    note.uuid = [uuid UUIDString];
-    [_allNotes addObject:note];
-    
-    Note *note2 = [[Note alloc] init];
-    note2.text = @"so much money";
-    note2.color = [UIColor sunflowerColor];
-    note2.slot = 4;
-    NSUUID *uuid2 = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid2 UUIDString]);
-    note2.uuid = [uuid2 UUIDString];
-    [_allNotes addObject:note2];
-    
-    Note *note3 = [[Note alloc] init];
-    note3.text = @"this is my third smart thing";
-    note3.color = [UIColor amethystColor];
-    note3.slot = 3;
-    NSUUID *uuid3 = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid3 UUIDString]);
-    note3.uuid = [uuid3 UUIDString];
-    [_allNotes addObject:note3];
-    
-    Note *note4 = [[Note alloc] init];
-    note4.text = @"this is my fourth facebook-level game changer";
-    note4.color = [UIColor midnightBlueColor];
-    note4.slot = 2;
-    NSUUID *uuid4 = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid4 UUIDString]);
-    note4.uuid = [uuid4 UUIDString];
-    [_allNotes addObject:note4];
-    
-    Note *note5 = [[Note alloc] init];
-    note5.text = @"this is my fifth idea";
-    note5.color = [UIColor alizarinColor];
-    note5.slot = 1;
-    NSUUID *uuid5 = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid5 UUIDString]);
-    note5.uuid = [uuid5 UUIDString];
-    [_allNotes addObject:note5];
+//    Note *note = [[Note alloc] init];
+//    note.text = @"one billion dollars";
+//    note.color = [UIColor emerlandColor];
+//    note.slot = 5;
+//    NSUUID *uuid = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid UUIDString]);
+//    note.uuid = [uuid UUIDString];
+//    [_allNotes addObject:note];
+//    
+//    Note *note2 = [[Note alloc] init];
+//    note2.text = @"so much money";
+//    note2.color = [UIColor sunflowerColor];
+//    note2.slot = 4;
+//    NSUUID *uuid2 = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid2 UUIDString]);
+//    note2.uuid = [uuid2 UUIDString];
+//    [_allNotes addObject:note2];
+//    
+//    Note *note3 = [[Note alloc] init];
+//    note3.text = @"this is my third smart thing";
+//    note3.color = [UIColor amethystColor];
+//    note3.slot = 3;
+//    NSUUID *uuid3 = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid3 UUIDString]);
+//    note3.uuid = [uuid3 UUIDString];
+//    [_allNotes addObject:note3];
+//    
+//    Note *note4 = [[Note alloc] init];
+//    note4.text = @"this is my fourth facebook-level game changer";
+//    note4.color = [UIColor midnightBlueColor];
+//    note4.slot = 2;
+//    NSUUID *uuid4 = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid4 UUIDString]);
+//    note4.uuid = [uuid4 UUIDString];
+//    [_allNotes addObject:note4];
+//    
+//    Note *note5 = [[Note alloc] init];
+//    note5.text = @"this is my fifth idea";
+//    note5.color = [UIColor alizarinColor];
+//    note5.slot = 1;
+//    NSUUID *uuid5 = [NSUUID UUID];
+//    NSLog(@"UUID: %@", [uuid5 UUIDString]);
+//    note5.uuid = [uuid5 UUIDString];
+//    [_allNotes addObject:note5];
     
     Note *note6 = [[Note alloc] init];
     note6.text = @"this is my sixth thought";
@@ -219,12 +222,18 @@
 }
 
 
--(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    NSLog(@"selected cell at @%d",indexPath.item);
+//    [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];      //really want to open modal view with cell and keyboard
+//    [self.ListView deselectItemAtIndexPath:indexPath animated:YES];
+//}
+
+-(BOOL)keyBoardDidShow
 {
-    NSLog(@"selected cell at @%d",indexPath.item);
-    [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];      //really want to open modal view with cell and keyboard
-    [self.ListView deselectItemAtIndexPath:indexPath animated:YES];
+    return YES;
 }
+
 
 //changes button color from alertview in notecell
 -(void)alertView:(FUIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -236,13 +245,7 @@
     [self.ListView reloadData];
 }
 
-//Scrolls to bottom of scrollview
-//http://stackoverflow.com/questions/14760496/uicollectionview-automatically-scroll-to-bottom-when-screen-loads
--(void)scrollToBottom
-{
-    CGPoint bottomOffset = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height);
-    [self.ListView setContentOffset:bottomOffset animated:NO];
-}
+
 
 //sorts all notes by color, as defined by user?
 -(void)colorSortAllNotes {
@@ -304,17 +307,23 @@
 
 -(void)archiveNote:(Note*)note {
     //sync note with web
+
     [_allNotes removeObject:note];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:note.slot inSection:0];
 //    NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:note.slot];
     NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
     
-//    [self.ListView delete:note];
-    [self.ListView deleteItemsAtIndexPaths:indexPaths];
+    if (indexPath.item == 0) {
+        [self.ListView reloadData];         //avoid error noted here: http://stackoverflow.com/questions/12611292/uicollectionview-assertion-failure
+    } else {
+        [self.ListView deleteItemsAtIndexPaths:indexPaths];
+    }
     
+    NSLog(@"remaining items in collection view: @% ", _allNotes.count);
+    
+    [self updateAllNotesSlotNumbers];
     
     [self.ListView reloadData];
-    
 }
 
 -(void)createNote {
@@ -327,6 +336,9 @@
     
     [_allNotes insertObject:note atIndex:0];
     [self updateAllNotesSlotNumbers];
+//    if (_allNotes.count == 1) {
+//                                  //avoid error noted here: http://stackoverflow.com/questions/12611292/uicollectionview-assertion-failure
+//    }
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
     [self.ListView insertItemsAtIndexPaths:indexPaths];
@@ -334,39 +346,114 @@
     [self editNoteCell: newCell];
 }
 
+
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
+    [textView becomeFirstResponder];
     return YES;
+}
+
+-(void) addInsets
+{
+    CGSize kbSize = CGSizeMake(320, 216);
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    self.ListView.contentInset = contentInsets;
+    self.ListView.scrollIndicatorInsets = contentInsets;
+}
+
+-(void) scrollToBottom:(NSIndexPath*)indexPath
+{
+    CGPoint bottom;
+    if (indexPath.item == 1 && _allNotes.count==2) {        //special case where only two cells and select second cell
+        bottom = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height + 170);
+    } else {
+        bottom = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height);
+    }
+    [self.ListView setContentOffset:bottom animated:YES];
+}
+
+-(void)removeInsets
+{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    self.ListView.contentInset = contentInsets;
+    self.ListView.scrollIndicatorInsets = contentInsets;
+}
+
+-(void)readyCellsForEditing:(UICollectionReusableView*)tappedElement curTapIsEdit:(BOOL)curTap {
+    for (int i = 0; i<self.allNotes.count; i++) {
+        NSLog(@"Tapped element type @%@",tappedElement.class);
+        NSIndexPath *path= [NSIndexPath indexPathForItem:i inSection:0];
+        NoteCell *current = (NoteCell*)[self.ListView cellForItemAtIndexPath:path];
+        
+        if (tappedElement.class == [ListViewHeader class]) {            //if tapped header, close up note as normal, then do what header says
+            [current flipEditingState];
+//            [self editNoteCell:current];
+        } else if(tappedElement == current) {                           //if tapped same cell, save (even if redundant) and do whatever told
+            current.note.text = current.noteText.text;
+        } else if (curTap) {
+            [current flipEditingState];
+        } else if (current.noteText.editable) {                            //otherwise it's a different cell, if editable, save up, close down without animation
+            [self editNoteCell:current];
+//            [current flipEditingState];
+//            NSIndexPath *currentIndexPath = [self.ListView indexPathForCell:current];
+//            
+//            [self endEdit:current shouldScroll:(currentIndexPath.item >0 && _allNotes.count>1 && _allNotes.count - currentIndexPath.item <=3) indexPath:currentIndexPath];
+        }//if it's not editable, don't need any teardown
+    }
 }
 
 -(void)editNoteCell:(NoteCell*)noteCell
 {
-    //scroll to top
-    NSIndexPath *indexPath = [self.ListView indexPathForCell:noteCell];
-    [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
-    
-    
+
     //flip booleans
     noteCell.noteText.userInteractionEnabled = !noteCell.noteText.userInteractionEnabled;
     noteCell.noteText.editable = !noteCell.noteText.editable;
-    
-    //flip icon
+
+//    //flip icon
     noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEditSign];
-    
 
     
+    NSIndexPath *indexPath = [self.ListView indexPathForCell:noteCell];
     
+    BOOL shouldScroll = (indexPath.item >0 && _allNotes.count>1 && _allNotes.count - indexPath.item <=3);
+    
+
     if(noteCell.noteText.editable) {
+        
+        [self addInsets];       //even first cell needs insets
+        if (shouldScroll) {
+
+            [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
+        }
+        //scroll to top
+
         [self textViewShouldBeginEditing:noteCell.noteText];
+
         noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEditSign];
-        [noteCell.noteText becomeFirstResponder];
+
     }
     else {
-        noteCell.note.text = noteCell.noteText.text;
-        noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEdit];
-        [noteCell.noteText endEditing:YES];
+        [self endEdit:noteCell shouldScroll:shouldScroll indexPath:indexPath];
     }
 }
+
+-(void)endEdit:(NoteCell*)noteCell shouldScroll:(BOOL)shouldScroll indexPath:(NSIndexPath*)indexPath
+{
+    noteCell.note.text = noteCell.noteText.text;
+    noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEdit];
+    [noteCell.noteText endEditing:YES];
+    
+    if (shouldScroll) {
+        [self scrollToBottom:indexPath];
+        [self performSelector:@selector(removeInsets) withObject:Nil afterDelay:0.3];   //delay as short as possible the removal of insets to ensure animation looks clean
+    }                                                                                   //if user flicks downward in less than 0.3 seconds, however,
+    else {                                                                              //can "see" this weird shortening of scroll view. how to avoid this?
+        [self removeInsets];
+    }
+}
+
+    
 
 #pragma mark - LXReorderableCollectionViewDataSource methods
 

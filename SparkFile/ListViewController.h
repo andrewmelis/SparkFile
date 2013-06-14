@@ -29,5 +29,8 @@
 -(void)archiveNote:(Note*)note;
 -(void)createNote;
 -(void)editNoteCell:(NoteCell*)noteCell;
+-(void)removeInsets;
+-(void)readyCellsForEditing:(UICollectionReusableView*)tappedElement curTapIsEdit:(BOOL)curTap;
+-(void)endEdit:(NoteCell*)noteCell shouldScroll:(BOOL)shouldScroll indexPath:(NSIndexPath*)indexPath;
 
 @end

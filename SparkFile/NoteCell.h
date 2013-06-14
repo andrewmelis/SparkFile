@@ -23,4 +23,5 @@
 
 -(void)showColorPicker;
 -(void)moveSelfToArchive;
+-(void)flipEditingState;
 @end
