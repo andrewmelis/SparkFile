@@ -10,13 +10,38 @@
 
 @implementation Note
 
-@synthesize text;
-@synthesize slot;
-@synthesize color;
-@synthesize archived;
+@synthesize uuid = _uuid;
+@synthesize text = _text;
+@synthesize slot = _slot;
+@synthesize color = _color;
+@synthesize archived = _archived;
+
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        _uuid = [aDecoder decodeObjectForKey:@"uuid"];
+        _text = [aDecoder decodeObjectForKey:@"text"];
+        _slot = [aDecoder decodeIntegerForKey:@"slot"];
+        _color = [aDecoder decodeObjectForKey:@"color"];
+        _archived = [aDecoder decodeBoolForKey:@"archived"];
+    }
+    return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeBool:_archived forKey:@"archived"];
+    [aCoder encodeObject:_uuid forKey:@"uuid"];
+    [aCoder encodeObject:_color forKey:@"color"];
+    [aCoder encodeObject:_text forKey:@"text"];
+    [aCoder encodeInteger:_slot forKey:@"slot"];
+}
 
 - (NSComparisonResult)colorCompare:(Note *)otherObject {
     
+    //move these prefs to NSUserDefaults?
     NSMutableArray *prefs = [[NSMutableArray alloc] initWithObjects:
                                         [UIColor alizarinColor],
                                         [UIColor sunflowerColor],
@@ -24,14 +49,14 @@
                                         [UIColor peterRiverColor],
                                         [UIColor amethystColor],
                                         [UIColor midnightBlueColor],
-                                        nil];
+                                                                nil];
+    
     return [prefs indexOfObject:self.color] - [prefs indexOfObject:otherObject.color];
 }
 
+
 - (NSComparisonResult)indexCompare:(Note *)otherObject {
-    
     return  self.slot - otherObject.slot;
-    
 }
 
 //compare by UUID
@@ -39,14 +64,14 @@
 {
     if([object isKindOfClass:self.class]) {
         Note *other = object;
-        if([self.uuid isEqualToString:other.uuid]) {
+        if([_uuid isEqualToString:other.uuid]) {
             return TRUE;
         }
     }
     return FALSE;
 }
 
-
+//not going to use this right now?
 -(void)saveNoteToParse:(Note*)offNote;
 {
     PFObject *note = [PFObject objectWithClassName:@"Note"];
@@ -74,8 +99,6 @@
     
     
 }
-
-
 
 
 @end

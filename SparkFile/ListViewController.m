@@ -21,7 +21,9 @@
 
 @implementation ListViewController
 
-//@synthesize allNotes;
+@synthesize masterNotes = _masterNotes;
+@synthesize showNotes = _showNotes;
+
 
 
 - (void)viewDidLoad
@@ -30,78 +32,44 @@
     
     [super viewDidLoad];
     
-//    NSArray *temp;
-//    [PFObject fetchAll:temp];
-//    _showNotes = [temp mutableCopy];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(storeMasterNotes:)
+                                                 name:UIApplicationDidEnterBackgroundNotification object:nil];
+
     
     self.ListView.delegate = self;
     self.ListView.dataSource = self;
     
     _showNotes = [[NSMutableArray alloc] init];
     _masterNotes = [[NSMutableArray alloc] init];
+
+    [self retrieveMasterNotes];
     
-    Note *note = [[Note alloc] init];
-    note.text = @"one billion dollars";
-    note.color = [UIColor emerlandColor];
-    note.slot = 5;
-    NSUUID *uuid = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid UUIDString]);
-    note.uuid = [uuid UUIDString];
-    [_showNotes addObject:note];
-    
-    Note *note2 = [[Note alloc] init];
-    note2.text = @"so much money";
-    note2.color = [UIColor sunflowerColor];
-    note2.slot = 4;
-    NSUUID *uuid2 = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid2 UUIDString]);
-    note2.uuid = [uuid2 UUIDString];
-    [_showNotes addObject:note2];
-    
-    Note *note3 = [[Note alloc] init];
-    note3.text = @"this is my third smart thing";
-    note3.color = [UIColor amethystColor];
-    note3.slot = 3;
-    NSUUID *uuid3 = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid3 UUIDString]);
-    note3.uuid = [uuid3 UUIDString];
-    [_showNotes addObject:note3];
-    
-    Note *note4 = [[Note alloc] init];
-    note4.text = @"this is my fourth facebook-level game changer";
-    note4.color = [UIColor midnightBlueColor];
-    note4.slot = 2;
-    NSUUID *uuid4 = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid4 UUIDString]);
-    note4.uuid = [uuid4 UUIDString];
-    [_showNotes addObject:note4];
-    
-    Note *note5 = [[Note alloc] init];
-    note5.text = @"this is my fifth idea";
-    note5.color = [UIColor alizarinColor];
-    note5.slot = 1;
-    NSUUID *uuid5 = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid5 UUIDString]);
-    note5.uuid = [uuid5 UUIDString];
-    [_showNotes addObject:note5];
-    
-    Note *note6 = [[Note alloc] init];
-    note6.text = @"this is my sixth thought";
-    note6.color = [UIColor emerlandColor];
-    note6.slot = 0;
-    NSUUID *uuid6 = [NSUUID UUID];
-    NSLog(@"UUID: %@", [uuid6 UUIDString]);
-    note6.uuid = [uuid6 UUIDString];
-    [_showNotes addObject:note6];
-    
-    NSLog(@"temp data entered");
-    [self indexSortAllNotes];
-    _masterNotes = [_showNotes mutableCopy];         //todo fix this
+    [self swapLists:NO];
+
     
 }
 
 //TODO need viewDidAppear?
+
+-(void) storeMasterNotes:(NSNotification*)notification
+{
+//    if ([[notification name] isEqualToString:@"entered_background"]){
+        NSLog (@"Successfully received the test notification!");
+//    }
+    
+    NSData *masterData = [NSKeyedArchiver archivedDataWithRootObject:_masterNotes];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:masterData forKey:@"master_notes"];
+}
+
+- (void) retrieveMasterNotes
+{
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSData *encodedNotes = [ud objectForKey:@"master_notes"];
+    NSArray *temp = [NSKeyedUnarchiver unarchiveObjectWithData:encodedNotes];
+    _masterNotes = [NSMutableArray arrayWithArray:temp];
+}
 
 
 #pragma mark - collectionview delegate methods
@@ -363,6 +331,59 @@
 }
 
 
+#pragma mark - noteCell management
+
+-(void)editNoteCell:(NoteCell*)noteCell
+{
+    
+    //flip booleans
+    noteCell.noteText.userInteractionEnabled = !noteCell.noteText.userInteractionEnabled;
+    noteCell.noteText.editable = !noteCell.noteText.editable;
+    
+    //    //flip icon
+    noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEditSign];
+    
+    
+    NSIndexPath *indexPath = [self.ListView indexPathForCell:noteCell];
+    
+    BOOL shouldScroll = (indexPath.item >0 && _showNotes.count>1 && _showNotes.count - indexPath.item <=3);
+    
+    
+    if(noteCell.noteText.editable) {
+        
+        [self addInsets];       //even first cell needs insets
+        if (shouldScroll) {
+            
+            [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
+        }
+        //scroll to top
+        
+        [self textViewShouldBeginEditing:noteCell.noteText];
+        
+        noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEditSign];
+        
+    }
+    else {
+        [self endEdit:noteCell shouldScroll:shouldScroll indexPath:indexPath];
+    }
+}
+
+
+-(void)endEdit:(NoteCell*)noteCell shouldScroll:(BOOL)shouldScroll indexPath:(NSIndexPath*)indexPath
+{
+    noteCell.note.text = noteCell.noteText.text;
+    noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEdit];
+    [noteCell.noteText endEditing:YES];
+    
+    if (shouldScroll) {
+        [self scrollToBottom:indexPath];
+        [self performSelector:@selector(removeInsets) withObject:Nil afterDelay:0.3];   //delay as short as possible the removal of insets to ensure animation looks clean
+    }                                                                                   //if user flicks downward in less than 0.3 seconds, however,
+    else {                                                                              //can "see" this weird shortening of scroll view. how to avoid this?
+        [self removeInsets];
+    }
+}
+
 -(void)readyCellsForEditing:(UICollectionReusableView*)tappedElement curTapIsEdit:(BOOL)curTap {
     for (int i = 0; i<_showNotes.count; i++) {
         NSLog(@"Tapped element type @%@",tappedElement.class);          //why is this being called so many times?
@@ -386,58 +407,6 @@
         }//if it's not editable, don't need any teardown
     }
 }
-
-
--(void)editNoteCell:(NoteCell*)noteCell
-{
-
-    //flip booleans
-    noteCell.noteText.userInteractionEnabled = !noteCell.noteText.userInteractionEnabled;
-    noteCell.noteText.editable = !noteCell.noteText.editable;
-
-//    //flip icon
-    noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEditSign];
-
-    
-    NSIndexPath *indexPath = [self.ListView indexPathForCell:noteCell];
-    
-    BOOL shouldScroll = (indexPath.item >0 && _showNotes.count>1 && _showNotes.count - indexPath.item <=3);
-    
-
-    if(noteCell.noteText.editable) {
-        
-        [self addInsets];       //even first cell needs insets
-        if (shouldScroll) {
-
-            [self.ListView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionTop];
-        }
-        //scroll to top
-
-        [self textViewShouldBeginEditing:noteCell.noteText];
-
-        noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEditSign];
-
-    }
-    else {
-        [self endEdit:noteCell shouldScroll:shouldScroll indexPath:indexPath];
-    }
-}
-
--(void)endEdit:(NoteCell*)noteCell shouldScroll:(BOOL)shouldScroll indexPath:(NSIndexPath*)indexPath
-{
-    noteCell.note.text = noteCell.noteText.text;
-    noteCell.editIcon.text = [NSString fontAwesomeIconStringForEnum:FAIconEdit];
-    [noteCell.noteText endEditing:YES];
-    
-    if (shouldScroll) {
-        [self scrollToBottom:indexPath];
-        [self performSelector:@selector(removeInsets) withObject:Nil afterDelay:0.3];   //delay as short as possible the removal of insets to ensure animation looks clean
-    }                                                                                   //if user flicks downward in less than 0.3 seconds, however,
-    else {                                                                              //can "see" this weird shortening of scroll view. how to avoid this?
-        [self removeInsets];
-    }
-}
-
     
 
 #pragma mark - LXReorderableCollectionViewDataSource methods

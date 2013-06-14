@@ -10,7 +10,7 @@
 #import "FlatUIKit.h"
 #import <Parse/Parse.h>
 
-@interface Note : NSObject
+@interface Note : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *uuid;
 @property (strong, nonatomic) NSString *text;
@@ -23,5 +23,9 @@
 -(BOOL)isEqual:(id)object;
 
 -(void)saveNoteToParse:(Note*)offNote;
+
+#pragma mark NSCoding methods
+-(id)initWithCoder:(NSCoder *)aDecoder;
+-(void)encodeWithCoder:(NSCoder *)aCoder;
 
 @end

@@ -16,22 +16,35 @@
 
 @interface ListViewController : UICollectionViewController <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout, FUIAlertViewDelegate, UITextViewDelegate>
 
-@property (strong, nonatomic) NSMutableArray *hiddenNotes;
+
+@property (strong, nonatomic) IBOutlet UICollectionView *ListView;
+
+
 @property (strong, nonatomic) NSMutableArray *showNotes;
 @property (strong, nonatomic) NSMutableArray *masterNotes;  //list synced with web
-@property (strong, nonatomic) IBOutlet UICollectionView *ListView;
-@property (nonatomic) IBOutlet ListViewHeader *header;
+
+-(void) storeMasterNotes:(NSNotification*)applicationDidEnterBackground;
+
+
+-(void)swapLists:(BOOL)archivedRequest;
 
 -(void)colorSortAllNotes;
 -(void)indexSortAllNotes;
 
--(void)getAllArchived;
--(void)getAllNonArchived;
+-(void)updateAllNotesSlotNumbers;
+-(void)syncNotesListWithMasterNotesList:(NSMutableArray*)notesList;
+
+-(void)addInsets;
+-(void)removeInsets;
+-(void)scrollToBottom;
+-(void)textViewDidBeginEditing:(UITextView *)textView;
+
 -(void)archiveNote:(Note*)note;
 -(void)createNote;
 -(void)editNoteCell:(NoteCell*)noteCell;
--(void)removeInsets;
--(void)readyCellsForEditing:(UICollectionReusableView*)tappedElement curTapIsEdit:(BOOL)curTap;
 -(void)endEdit:(NoteCell*)noteCell shouldScroll:(BOOL)shouldScroll indexPath:(NSIndexPath*)indexPath;
+
+-(void)readyCellsForEditing:(UICollectionReusableView*)tappedElement curTapIsEdit:(BOOL)curTap;
+
 
 @end

@@ -24,6 +24,7 @@
     return self;
 }
 
+//intercept touches to cell
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch *touch = [touches anyObject];
@@ -37,33 +38,31 @@
     }
     [self.parentViewController readyCellsForEditing:self curTapIsEdit:curTap];
     
-    if(touch.view.tag == 10)    //cogs -- color picker
-    {
-        [self flipEditingState];
-        [self showColorPicker];
-
-    } else if (touch.view.tag == 20)    //archive button
+    
+    if (touch.view.tag == 20)    //archive button
     {
         //move to archive
         NSLog(@"test archive tag + %d",self.note.archived);
         
         [self flipEditingState];
         [self moveSelfToArchive];
-    
-    }
-        else if (touch.view.tag == 30)
+        
+    } else if(touch.view.tag == 10)    //color picker
+    {
+        [self flipEditingState];
+        [self showColorPicker];
+        
+    } else if (touch.view.tag == 30)    //edit button
     {
         //open edit modal
         NSLog(@"testing tags -- edit button, going to state: @%i", !self.noteText.editable);
         
         [self.parentViewController editNoteCell:self];
-//    } else if (touches.class == self.class) {
-//    } else {
-        
     }
 
 }
 
+//archive self.note -- refactor?
 -(void)moveSelfToArchive
 {
     self.note.archived = !self.note.archived;
@@ -79,9 +78,6 @@
     
 }
 
-
-
-//-(void)turnOffEditing:(NoteCell*)current
 -(void)flipEditingState
 {
     //flip booleans
@@ -95,6 +91,7 @@
     self.note.text = self.noteText.text;
 }
 
+//should this be in its own viewcontroller?
 -(void)showColorPicker
 {
     //show color picker
@@ -120,13 +117,6 @@
     [alertView show];
     
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+
 
 @end

@@ -15,10 +15,11 @@
 
 @property (weak) ListViewController *parentViewController;
 
-@property (weak, nonatomic) IBOutlet UILabel *createNoteIcon;
 @property (weak, nonatomic) IBOutlet UILabel *systemSettingsIcon;
 @property (weak, nonatomic) IBOutlet UILabel *colorSortIcon;
 @property (weak, nonatomic) IBOutlet UILabel *dateSortIcon;
 @property (weak, nonatomic) IBOutlet UILabel *archiveIcon;
+@property (weak, nonatomic) IBOutlet UILabel *createNoteIcon;
+
 
 @end

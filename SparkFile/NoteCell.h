@@ -15,13 +15,15 @@
 
 @property (weak) ListViewController *parentViewController;
 @property (strong, nonatomic) Note *note;
+
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
 @property (weak, nonatomic) IBOutlet UILabel *archiveIcon;
 @property (weak, nonatomic) IBOutlet UILabel *colorChooserIcon;
 @property (weak, nonatomic) IBOutlet UILabel *editIcon;
 
-
--(void)showColorPicker;
 -(void)moveSelfToArchive;
 -(void)flipEditingState;
+-(void)showColorPicker;
+
+
 @end
