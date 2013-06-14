@@ -16,13 +16,16 @@
 {
     // Override point for customization after application launch.
 
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"initial_launch"])
     {
         // app already launched
+        NSLog(@"not the first time...");
     }
     else {
         //need to make this a first launch date rather than bool
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
+        NSLog(@"there's a first time for everything");
+        NSDate *now = [[NSDate alloc]init];
+        [[NSUserDefaults standardUserDefaults] setObject:now forKey:@"initial_launch"];
         
         [[NSUserDefaults standardUserDefaults] synchronize];
         
@@ -60,42 +63,45 @@
     
     
     //connection checking method from http://stackoverflow.com/questions/7015644/ios-reachability-not-recognizing-when-host-is-removed/7016594#comment9733939_7016594
+
     
-    NSError *error = nil;
-    NSStringEncoding encoding = 0;
-    NSURL *url = [[NSURL alloc] initWithString:@"http://www.google.com"];
-    NSString *connected = [[NSString alloc] initWithContentsOfURL:url
-                                                     usedEncoding:&encoding
-                                                            error:&error];
+    //no need for this wifi checker bc not using Parse in this version
     
-    wait(2500);
-    if (connected == NULL) {
-        
-        NSLog(@"Not Connected");
-        //Code to show if not connected
-        
-        FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"No Connection" message:@"Looks like you don't have an internet connection.\nSparkFile will do its best to save your work, but some data loss may occur." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil ];
-        alertView.titleLabel.textColor = [UIColor midnightBlueColor];
-        alertView.titleLabel.font = [UIFont boldFlatFontOfSize:20];
-        alertView.messageLabel.textColor = [UIColor midnightBlueColor];
-        alertView.messageLabel.font = [UIFont flatFontOfSize:18];
-        alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
-        alertView.alertContainer.backgroundColor = [UIColor cloudsColor];
-        alertView.defaultButtonColor = [UIColor alizarinColor];
-        alertView.defaultButtonShadowColor = [UIColor pomegranateColor];
-        
-        [alertView show];
-        
+//    NSError *error = nil;
+//    NSStringEncoding encoding = 0;
+//    NSURL *url = [[NSURL alloc] initWithString:@"http://www.google.com"];
+//    NSString *connected = [[NSString alloc] initWithContentsOfURL:url
+//                                                     usedEncoding:&encoding
+//                                                            error:&error];
+//    
+//    wait(2500);
+//    if (connected == NULL) {
+//        
+//        NSLog(@"Not Connected");
+//        //Code to show if not connected
+//        
+//        FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"No Connection" message:@"Looks like you don't have an internet connection.\nSparkFile will do its best to save your work, but some data loss may occur." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil ];
+//        alertView.titleLabel.textColor = [UIColor midnightBlueColor];
+//        alertView.titleLabel.font = [UIFont boldFlatFontOfSize:20];
+//        alertView.messageLabel.textColor = [UIColor midnightBlueColor];
+//        alertView.messageLabel.font = [UIFont flatFontOfSize:18];
+//        alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
+//        alertView.alertContainer.backgroundColor = [UIColor cloudsColor];
+//        alertView.defaultButtonColor = [UIColor alizarinColor];
+//        alertView.defaultButtonShadowColor = [UIColor pomegranateColor];
+//        
+//        [alertView show];
+    
         
 
 
         
         
-        
-    } else {
-        NSLog(@"Connected Successfully!");
+//        
+//    } else {
+//        NSLog(@"Connected Successfully!");
         //Any other code for successful connection
-    }
+//    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
