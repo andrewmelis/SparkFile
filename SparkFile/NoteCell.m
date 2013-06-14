@@ -91,7 +91,6 @@
     self.note.text = self.noteText.text;
 }
 
-//should this be in its own viewcontroller?
 -(void)showColorPicker
 {
     //show color picker
@@ -114,6 +113,7 @@
     
     NSLog(@"why is note null? @%@",self.note);
     alertView.note = self.note;
+    alertView.tag = 44;
     [alertView show];
     
 }

@@ -18,6 +18,7 @@
 
 
 @property (strong, nonatomic) IBOutlet UICollectionView *ListView;
+@property (weak, nonatomic) IBOutlet ListViewHeader *header;
 
 
 @property (strong, nonatomic) NSMutableArray *showNotes;

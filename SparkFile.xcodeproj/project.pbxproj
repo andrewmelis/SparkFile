@@ -63,6 +63,7 @@
 		28A58A9F176A6A020071AC6B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 28A58A9E176A6A020071AC6B /* Default.png */; };
 		28A58AA1176A6BFA0071AC6B /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28A58AA0176A6BFA0071AC6B /* Parse.framework */; };
 		28A58AA3176A73F20071AC6B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 28A58AA2176A73F20071AC6B /* Settings.bundle */; };
+		28A58AA6176B1C130071AC6B /* AlertViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A58AA5176B1C130071AC6B /* AlertViewHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -148,6 +149,8 @@
 		28A58A9E176A6A020071AC6B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		28A58AA0176A6BFA0071AC6B /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		28A58AA2176A73F20071AC6B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		28A58AA4176B1C130071AC6B /* AlertViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewHelper.h; sourceTree = "<group>"; };
+		28A58AA5176B1C130071AC6B /* AlertViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,14 +241,11 @@
 			children = (
 				2840AF761765A59E00203874 /* MainStoryboard.storyboard */,
 				2805A6921766CA2C000A9716 /* Model */,
+				28A58AA7176B1D9C0071AC6B /* AlertViews */,
 				2805A6A21766F1C3000A9716 /* Collection View Element Classes */,
-				2840AF6D1765A59E00203874 /* AppDelegate.h */,
-				2840AF6E1765A59E00203874 /* AppDelegate.m */,
-				2847234A176629D800157935 /* ListViewController.h */,
-				2847234B176629D800157935 /* ListViewController.m */,
-				285496F417682CDE00C1E930 /* FontAwesome */,
-				284722C01766203600157935 /* FlatUIKit-master */,
-				2840AF951765A6AC00203874 /* LXReorderableCollectionViewFlowLayout */,
+				28A58AA8176B1DC20071AC6B /* App Delegate */,
+				28A58AA9176B1DCB0071AC6B /* ListViewController */,
+				28A58AAA176B1DDF0071AC6B /* Foreign Libraries */,
 				2840AF651765A59E00203874 /* Supporting Files */,
 			);
 			path = SparkFile;
@@ -359,6 +359,43 @@
 			name = FontAwesome;
 			sourceTree = "<group>";
 		};
+		28A58AA7176B1D9C0071AC6B /* AlertViews */ = {
+			isa = PBXGroup;
+			children = (
+				28A58AA4176B1C130071AC6B /* AlertViewHelper.h */,
+				28A58AA5176B1C130071AC6B /* AlertViewHelper.m */,
+			);
+			name = AlertViews;
+			sourceTree = "<group>";
+		};
+		28A58AA8176B1DC20071AC6B /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				2840AF6E1765A59E00203874 /* AppDelegate.m */,
+				2840AF6D1765A59E00203874 /* AppDelegate.h */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		28A58AA9176B1DCB0071AC6B /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2847234A176629D800157935 /* ListViewController.h */,
+				2847234B176629D800157935 /* ListViewController.m */,
+			);
+			name = ListViewController;
+			sourceTree = "<group>";
+		};
+		28A58AAA176B1DDF0071AC6B /* Foreign Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				285496F417682CDE00C1E930 /* FontAwesome */,
+				284722C01766203600157935 /* FlatUIKit-master */,
+				2840AF951765A6AC00203874 /* LXReorderableCollectionViewFlowLayout */,
+			);
+			name = "Foreign Libraries";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -462,6 +499,7 @@
 				2805A6951766CD76000A9716 /* NoteCell.m in Sources */,
 				285496F317682CC700C1E930 /* NSString+FontAwesome.m in Sources */,
 				285496F717686EB400C1E930 /* ListViewHeader.m in Sources */,
+				28A58AA6176B1C130071AC6B /* AlertViewHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

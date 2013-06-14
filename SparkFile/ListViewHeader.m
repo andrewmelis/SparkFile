@@ -30,7 +30,7 @@
     if(touch.view.tag == 100)    //cog -- system settings
     {
         NSLog(@"touching tags -- settings button");
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root"]];
+        [AlertViewHelper showSettings:self.parentViewController];
         
     } else if (touch.view.tag == 90) //color sort button
     {
@@ -75,6 +75,37 @@
         NSLog(@"touching tags -- create note button");
         [self.parentViewController createNote];
     }
+}
+
+
+-(void)showSettings
+{
+    FUIAlertView *alertView = [[FUIAlertView alloc] initWithTitle:@"Settings" message:@"" delegate:self.parentViewController cancelButtonTitle:@"Ok" otherButtonTitles:@"Help", @"Clear Data", @"Credits", nil];
+    
+    alertView.titleLabel.textColor = [UIColor midnightBlueColor];
+    alertView.titleLabel.font = [UIFont boldFlatFontOfSize:20];
+    alertView.messageLabel.textColor = [UIColor midnightBlueColor];
+    alertView.messageLabel.font = [UIFont flatFontOfSize:0];
+    alertView.backgroundOverlay.backgroundColor = [[UIColor cloudsColor] colorWithAlphaComponent:0.8];
+    alertView.alertContainer.backgroundColor = [UIColor cloudsColor];
+    alertView.defaultButtonColor = [UIColor alizarinColor];
+    alertView.defaultButtonShadowColor = [UIColor pomegranateColor];
+    alertView.defaultButtonFont = [UIFont boldFlatFontOfSize:18];
+    alertView.defaultButtonTitleColor = [UIColor cloudsColor];
+    
+    [alertView setButtonColorsAtIndex:0 color:[UIColor emerlandColor] shadowColor:[UIColor nephritisColor]];
+    [alertView setButtonColorsAtIndex:1 color:[UIColor alizarinColor] shadowColor:[UIColor pomegranateColor]];
+    [alertView setButtonColorsAtIndex:2 color:[UIColor peterRiverColor] shadowColor:[UIColor belizeHoleColor]];
+    [alertView setButtonColorsAtIndex:3 color:[UIColor wetAsphaltColor] shadowColor:[UIColor midnightBlueColor]];
+    
+    alertView.tag = 55;
+    [alertView show];
+}
+-(void)wipeUserData
+{
+    //another alert view
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
 }
 
 @end

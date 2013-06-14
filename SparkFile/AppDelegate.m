@@ -16,18 +16,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    
-    [Parse setApplicationId:@"HvfydIIRoTKeYthy7jAhOGRE9F56OtA37Yke9liM"
-                  clientKey:@"NZmaBjBKqhE1hMGQ9AwO6gr0b4DviMzlEVxGYeEU"];
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"HasLaunchedOnce"])
     {
         // app already launched
-        //load user from Parse web
     }
     else {
-        
         //need to make this a first launch date rather than bool
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"HasLaunchedOnce"];
         
@@ -35,15 +29,6 @@
         
 
     }
-    
-    //enabling anonymous user
-    [PFUser enableAutomaticUser];
-    [[PFUser currentUser] incrementKey:@"RunCount"];
-    [[PFUser currentUser] saveInBackground];
-
-    
-    
-    
     return YES;
 }
 

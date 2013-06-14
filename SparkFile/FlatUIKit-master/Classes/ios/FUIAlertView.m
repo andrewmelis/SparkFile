@@ -223,7 +223,6 @@
 -(void)setButtonColorsAtIndex:(NSUInteger)buttonIndex color:(UIColor*)color shadowColor:(UIColor*)shadowColor {
     if([self.buttons objectAtIndex:buttonIndex]) {
         FUIButton *button = [self.buttons objectAtIndex:buttonIndex];
-        NSLog(@"button at index %d color: %@ with shadowheight: %f",buttonIndex,button.shadowColor,button.shadowHeight);
         button.buttonColor = color;
         button.shadowColor = shadowColor;
         [self.buttons replaceObjectAtIndex:buttonIndex withObject:button];

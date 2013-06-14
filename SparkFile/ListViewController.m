@@ -14,6 +14,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ListViewHeader.h"
 #import "NSString+FontAwesome.h"
+#import "AlertViewHelper.h"
 
 @interface ListViewController ()
 
@@ -177,14 +178,41 @@
 
 
 #pragma mark - alertview colorpicker
-//changes button color from alertview in notecell
+
 -(void)alertView:(FUIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    FUIButton *button = [alertView.buttons objectAtIndex:buttonIndex];
-    NSLog(@"@%@",alertView.note.color);
-    alertView.note.color = button.buttonColor;
-    NSLog(@"@%@",alertView.note.color);
-    [self.ListView reloadData];
+    //activates colorpicker -- changes button color from alertview in notecell
+    if(alertView.tag ==44) {
+        FUIButton *button = [alertView.buttons objectAtIndex:buttonIndex];
+        alertView.note.color = button.buttonColor;
+        [self.ListView reloadData];
+    }
+    //activates settings -- from listviewheader
+    else if (alertView.tag == 55) {
+        
+        if (buttonIndex == 0)
+        {
+            [AlertViewHelper showHelp:self];
+            
+        } else if (buttonIndex == 1) {
+            //show warning popup
+            [AlertViewHelper clearData:self];
+
+
+        } else if (buttonIndex == 2)
+        {
+            [AlertViewHelper showCredits:self];
+        }
+    }
+    //clear the data, for real
+    else if (alertView.tag == 66)
+    {
+        [_showNotes removeAllObjects];
+        [_masterNotes removeAllObjects];
+        [self storeMasterNotes:nil];
+        [self retrieveMasterNotes];
+        [self swapLists:NO];
+    }
 }
 
 #pragma mark - swap which list is on screen
