@@ -65,9 +65,9 @@
 		28A58AAE176B30310071AC6B /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF8D1765A63600203874 /* libz.1.1.3.dylib */; };
 		28A58AAF176B30310071AC6B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF8B1765A62D00203874 /* MobileCoreServices.framework */; };
 		28A58AB0176B30310071AC6B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF871765A62100203874 /* Security.framework */; };
-		28A58AB1176B30310071AC6B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF851765A61C00203874 /* StoreKit.framework */; };
 		28A58AB2176B30310071AC6B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF831765A61500203874 /* SystemConfiguration.framework */; };
 		28A58AB3176B30310071AC6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2840AF621765A59E00203874 /* CoreGraphics.framework */; };
+		28F16E231770C93B001269B0 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28F16E221770C93B001269B0 /* Media.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +159,7 @@
 		28A58AA2176A73F20071AC6B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		28A58AA4176B1C130071AC6B /* AlertViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewHelper.h; sourceTree = "<group>"; };
 		28A58AA5176B1C130071AC6B /* AlertViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewHelper.m; sourceTree = "<group>"; };
+		28F16E221770C93B001269B0 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = SparkFile/Media.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +175,6 @@
 				28A58AAF176B30310071AC6B /* MobileCoreServices.framework in Frameworks */,
 				2840AF8A1765A62800203874 /* QuartzCore.framework in Frameworks */,
 				28A58AB0176B30310071AC6B /* Security.framework in Frameworks */,
-				28A58AB1176B30310071AC6B /* StoreKit.framework in Frameworks */,
 				28A58AB2176B30310071AC6B /* SystemConfiguration.framework in Frameworks */,
 				2840AF5F1765A59E00203874 /* UIKit.framework in Frameworks */,
 				2840AF611765A59E00203874 /* Foundation.framework in Frameworks */,
@@ -208,6 +208,7 @@
 		2840AF521765A59E00203874 = {
 			isa = PBXGroup;
 			children = (
+				28F16E221770C93B001269B0 /* Media.xcassets */,
 				2840AF641765A59E00203874 /* SparkFile */,
 				2840AF5D1765A59E00203874 /* Frameworks */,
 				2840AF5C1765A59E00203874 /* Products */,
@@ -443,6 +444,16 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Baller Status Inc.";
+				TargetAttributes = {
+					2840AF5A1765A59E00203874 = {
+						DevelopmentTeam = X3CP6LH669;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 2840AF561765A59E00203874 /* Build configuration list for PBXProject "SparkFile" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -471,6 +482,7 @@
 				2847233B1766203600157935 /* Lato-Black.ttf in Resources */,
 				2847233C1766203600157935 /* Lato-BlackItalic.ttf in Resources */,
 				2847233D1766203600157935 /* Lato-Bold.ttf in Resources */,
+				28F16E231770C93B001269B0 /* Media.xcassets in Resources */,
 				2847233E1766203600157935 /* Lato-BoldItalic.ttf in Resources */,
 				2847233F1766203600157935 /* Lato-Hairline.ttf in Resources */,
 				284723401766203600157935 /* Lato-HairlineItalic.ttf in Resources */,
@@ -608,6 +620,8 @@
 		2840AF7F1765A59E00203874 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -616,6 +630,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SparkFile/SparkFile-Prefix.pch";
 				INFOPLIST_FILE = "SparkFile/SparkFile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -624,6 +639,8 @@
 		2840AF801765A59E00203874 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -632,6 +649,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SparkFile/SparkFile-Prefix.pch";
 				INFOPLIST_FILE = "SparkFile/SparkFile-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

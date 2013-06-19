@@ -300,7 +300,7 @@
 {
     CGPoint bottom;
     if (indexPath.item == 1 && _showNotes.count==2) {        //special case where only two cells and select second cell
-        bottom = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height + 170);
+        bottom = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height + 176);
     } else {
         bottom = CGPointMake(0, self.ListView.contentSize.height - self.ListView.bounds.size.height);
     }
