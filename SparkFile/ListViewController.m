@@ -207,11 +207,17 @@
     //clear the data, for real
     else if (alertView.tag == 66)
     {
-        [_showNotes removeAllObjects];
-        [_masterNotes removeAllObjects];
-        [self storeMasterNotes:nil];
-        [self retrieveMasterNotes];
-        [self swapLists:NO];
+        if (buttonIndex == 0)
+        {
+            [_showNotes removeAllObjects];
+            [_masterNotes removeAllObjects];
+            [self storeMasterNotes:nil];
+            [self retrieveMasterNotes];
+            [self swapLists:NO];
+        } else if (buttonIndex == 1)
+        {
+            [AlertViewHelper showSettings:self];
+        }
     }
 }
 
